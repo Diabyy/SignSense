@@ -50,4 +50,13 @@ describe("public deployment controls", () => {
     expect(index).toContain('content="noindex, nofollow, noarchive"');
     expect(robots).toContain("Disallow: /");
   });
+
+  it("keeps raw data out of Vercel while retaining frontend tests", () => {
+    const vercelIgnore = readFileSync(resolve("..", ".vercelignore"), "utf8");
+    expect(vercelIgnore).toContain("/dataset/");
+    expect(vercelIgnore).toContain("/scripts/");
+    expect(vercelIgnore).toContain("/tests/");
+    expect(vercelIgnore).toContain("/Website/node_modules/");
+    expect(vercelIgnore).not.toContain("/Website/tests/");
+  });
 });
