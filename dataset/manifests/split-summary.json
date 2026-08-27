@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-26T11:48:32.675408+00:00",
+  "seed": "signsense-v1",
+  "bisindo": {
+    "sample_count": 28303,
+    "split_counts": {
+      "test": 519,
+      "train": 24191,
+      "val": 3593
+    },
+    "source_counts": {
+      "binus_hand_sign": 519,
+      "bisindo_um_v1": 8040,
+      "multimodal_bisindo_v2": 19744
+    },
+    "split_label_counts": {
+      "test": {
+        "A": 19,
+        "B": 20,
+        "C": 20,
+        "D": 20,
+        "E": 20,
+        "F": 20,
+        "G": 20,
+        "H": 20,
+        "I": 20,
+        "K": 20,
+        "L": 20,
+        "M": 20,
+        "N": 20,
+        "O": 20,
+        "P": 20,
+        "Q": 20,
+        "S": 20,
+        "T": 20,
+        "U": 20,
+        "UNKNOWN": 60,
+        "V": 20,
+        "W": 20,
+        "X": 20,
+        "Y": 20
+      },
+      "train": {
+        "A": 1244,
+        "B": 1428,
+        "C": 1231,
+        "D": 1159,
+        "E": 1268,
+        "F": 1275,
+        "G": 1045,
+        "H": 1199,
+        "I": 1081,
+        "K": 1100,
+        "L": 919,
+        "M": 720,
+        "N": 628,
+        "O": 755,
+        "P": 1117,
+        "Q": 729,
+        "S": 714,
+        "T": 1026,
+        "U": 747,
+        "UNKNOWN": 2004,
+        "V": 732,
+        "W": 719,
+        "X": 684,
+        "Y": 667
+      },
+      "val": {
+        "A": 177,
+        "B": 196,
+        "C": 176,
+        "D": 166,
+        "E": 178,
+        "F": 180,
+        "G": 152,
+        "H": 167,
+        "I": 154,
+        "K": 156,
+        "L": 136,
+        "M": 113,
+        "N": 103,
+        "O": 117,
+        "P": 156,
+        "Q": 114,
+        "S": 115,
+        "T": 147,
+        "U": 118,
+        "UNKNOWN": 326,
+        "V": 115,
+        "W": 113,
+        "X": 109,
+        "Y": 109
+      }
+    },
+    "split_source_counts": {
+      "test": {
+        "binus_hand_sign": 519
+      },
+      "train": {
+        "bisindo_um_v1": 6426,
+        "multimodal_bisindo_v2": 17765
+      },
+      "val": {
+        "bisindo_um_v1": 1614,
+        "multimodal_bisindo_v2": 1979
+      }
+    }
+  },
+  "asl": {
+    "sample_count": 70146,
+    "split_counts": {
+      "test": 10088,
+      "train": 50000,
+      "val": 10058
+    },
+    "source_counts": {
+      "asl_alphabet_v1": 70146
+    },
+    "split_label_counts": {
+      "test": {
+        "A": 400,
+        "B": 389,
+        "C": 400,
+        "D": 400,
+        "E": 400,
+        "F": 400,
+        "G": 400,
+        "H": 400,
+        "I": 400,
+        "K": 400,
+        "L": 399,
+        "M": 400,
+        "N": 400,
+        "O": 400,
+        "P": 400,
+        "Q": 400,
+        "R": 400,
+        "S": 400,
+        "T": 400,
+        "U": 400,
+        "UNKNOWN": 500,
+        "V": 400,
+        "W": 400,
+        "X": 400,
+        "Y": 400
+      },
+      "train": {
+        "A": 2000,
+        "B": 2000,
+        "C": 2000,
+        "D": 2000,
+        "E": 2000,
+        "F": 2000,
+        "G": 2000,
+        "H": 2000,
+        "I": 2000,
+        "K": 2000,
+        "L": 2000,
+        "M": 2000,
+        "N": 2000,
+        "O": 2000,
+        "P": 2000,
+        "Q": 2000,
+        "R": 2000,
+        "S": 2000,
+        "T": 2000,
+        "U": 2000,
+        "UNKNOWN": 2000,
+        "V": 2000,
+        "W": 2000,
+        "X": 2000,
+        "Y": 2000
+      },
+      "val": {
+        "A": 400,
+        "B": 400,
+        "C": 400,
+        "D": 400,
+        "E": 400,
+        "F": 400,
+        "G": 400,
+        "H": 400,
+        "I": 400,
+        "K": 400,
+        "L": 400,
+        "M": 400,
+        "N": 400,
+        "O": 400,
+        "P": 400,
+        "Q": 400,
+        "R": 400,
+        "S": 400,
+        "T": 400,
+        "U": 400,
+        "UNKNOWN": 458,
+        "V": 400,
+        "W": 400,
+        "X": 400,
+        "Y": 400
+      }
+    },
+    "split_source_counts": {
+      "test": {
+        "asl_alphabet_v1": 10088
+      },
+      "train": {
+        "asl_alphabet_v1": 50000
+      },
+      "val": {
+        "asl_alphabet_v1": 10058
+      }
+    }
+  },
+  "asl_sequence_policy": {
+    "split_ranges": {
+      "train": {
+        "start": 1,
+        "end": 2000
+      },
+      "val": {
+        "start": 2101,
+        "end": 2500
+      },
+      "test": {
+        "start": 2601,
+        "end": 3000
+      }
+    },
+    "group_size": 50,
+    "guard_ranges": [
+      {
+        "start": 2001,
+        "end": 2100
+      },
+      {
+        "start": 2501,
+        "end": 2600
+      }
+    ]
+  },
+  "exclusions": {
+    "count": 16892,
+    "reason_counts": {
+      "exact_duplicate": 1,
+      "exact_duplicate_of_training_image": 28,
+      "missing_matching_xml": 7,
+      "multi_object_annotation": 2,
+      "perceptual_near_duplicate_of_earlier_split": 54,
+      "sequence_guard_band": 5800,
+      "unknown_downsampling": 11000
+    }
+  },
+  "validation": {
+    "group_leakage": 0,
+    "exact_hash_leakage": 0,
+    "asl_sequence_guard_band": true,
+    "all_output_labels_present_in_each_split": true
+  }
+}

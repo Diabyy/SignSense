@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "generated_on": "2026-08-25",
+  "policy": {
+    "scope": "strict static alphabet MVP",
+    "unknown_label": "UNKNOWN",
+    "regional_variation": "BISINDO varies by region; this specification follows the downloaded datasets and must remain configurable.",
+    "motion_rule": "A letter is deferred if credible evidence says its identity requires a trajectory rather than a held endpoint pose."
+  },
+  "modes": {
+    "bisindo": {
+      "spec_id": "bisindo-static-v1",
+      "status": "provisional pending validation by a Deaf BISINDO instructor",
+      "static_letters": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y"
+      ],
+      "one_hand_static": [
+        "C",
+        "E",
+        "I",
+        "L",
+        "O",
+        "U",
+        "V"
+      ],
+      "two_hand_static": [
+        "A",
+        "B",
+        "D",
+        "F",
+        "G",
+        "H",
+        "K",
+        "M",
+        "N",
+        "P",
+        "Q",
+        "S",
+        "T",
+        "W",
+        "X",
+        "Y"
+      ],
+      "deferred_letters": [
+        {
+          "label": "J",
+          "reason": "dynamic trajectory",
+          "expected_hands": 1,
+          "confidence": "high"
+        },
+        {
+          "label": "R",
+          "reason": "dynamic trajectory in the strongest direct BISINDO study; regional/static variants exist",
+          "expected_hands": 1,
+          "confidence": "medium-high"
+        },
+        {
+          "label": "Z",
+          "reason": "complex movement reported to extend toward the shoulder; static endpoint datasets are inconsistent",
+          "expected_hands": 1,
+          "confidence": "medium"
+        }
+      ],
+      "output_labels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "UNKNOWN"
+      ],
+      "unknown_policy": {
+        "expected_hands": "0-2",
+        "sources": [
+          "neutral and ambiguous hand poses",
+          "transitions between valid letters",
+          "deferred dynamic letters shown as isolated endpoint frames",
+          "low-quality or partial hand detections"
+        ]
+      },
+      "notes": [
+        "Y is retained provisionally as a static two-hand pose because the animated reference shows a holdable endpoint and no strong source was found that requires a trajectory.",
+        "Z is excluded under the strict-static policy even though some image classifiers treat its endpoint as static.",
+        "The static model must support two hands; a one-hand-only feature pipeline would discard 16 of 23 classes."
+      ]
+    },
+    "asl": {
+      "spec_id": "asl-static-v1",
+      "status": "frozen for MVP",
+      "static_letters": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y"
+      ],
+      "one_hand_static": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y"
+      ],
+      "two_hand_static": [],
+      "deferred_letters": [
+        {
+          "label": "J",
+          "reason": "dynamic trajectory",
+          "expected_hands": 1,
+          "confidence": "high"
+        },
+        {
+          "label": "Z",
+          "reason": "dynamic trajectory",
+          "expected_hands": 1,
+          "confidence": "high"
+        }
+      ],
+      "output_labels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "UNKNOWN"
+      ],
+      "unknown_policy": {
+        "expected_hands": "0-1",
+        "sources": [
+          "the source dataset's nothing class",
+          "balanced samples from del and space while gesture controls are disabled",
+          "neutral and ambiguous hand poses",
+          "transitions and low-quality detections"
+        ]
+      },
+      "notes": [
+        "The bundled Kaggle test directory is excluded because all 28 files are exact copies of training images.",
+        "Space and delete remain UI buttons in the MVP and are not output classes."
+      ]
+    }
+  },
+  "evidence": [
+    {
+      "id": "damatraseta_alfan_yuliandi_gnn",
+      "title": "Penerapan Graph Neural Network dalam Pengenalan Alfabet BISINDO dengan Fokus pada Gerakan Dinamis",
+      "doi": "10.24002/jbi.v16i2.12013",
+      "url": "https://doi.org/10.24002/jbi.v16i2.12013",
+      "finding": "The method identifies J and R as dynamic; the conclusion also describes Z as a complex letter involving movement toward the shoulder.",
+      "caveat": "The study is small and its publication metadata conflicts with the PDF date."
+    },
+    {
+      "id": "multimodal_bisindo_v2",
+      "title": "A Multimodal BISINDO Corpus",
+      "doi": "10.17632/235c78xbmk.2",
+      "url": "https://data.mendeley.com/datasets/235c78xbmk/2",
+      "finding": "Provides A-Z videos and extracted frames for checking endpoint poses and motion coverage.",
+      "caveat": "The public videos contain one actor and do not publish a letter-level static/dynamic table."
+    },
+    {
+      "id": "animated_bisindo_reference_v1",
+      "title": "Animated BISINDO Alphabet",
+      "url": "https://www.kaggle.com/datasets/rayramadita/bisindo-alphabet",
+      "finding": "Visual reference for A-Z and common phrases; used only to compare pose and motion, not as training data.",
+      "caveat": "The dataset does not document linguistic validation or regional variety."
+    },
+    {
+      "id": "pusbisindo",
+      "title": "Pusat Bahasa Isyarat Indonesia",
+      "url": "https://www.pusbisindo.org/",
+      "finding": "BISINDO has regional variation, so a universal motion table should not be assumed.",
+      "caveat": "No downloadable machine-readable alphabet specification was found."
+    },
+    {
+      "id": "doruk_asl_static_reference",
+      "title": "ASL Alphabet Dataset",
+      "url": "https://www.kaggle.com/datasets/dorukdemirci/asl-alphabet-dataset",
+      "finding": "Defines the 24 static ASL letters and excludes motion-based J and Z.",
+      "caveat": "Used as metadata evidence only; it is not currently part of the local training data."
+    }
+  ]
+}

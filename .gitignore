@@ -1,0 +1,47 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local environment and editor files
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+*.code-workspace
+.DS_Store
+Thumbs.db
+
+# Raw and regenerable dataset content
+dataset/.downloads/
+dataset/raw/
+dataset/local-validation/
+dataset/processed/reference/
+dataset/processed/landmarks/*.csv
+dataset/processed/landmarks/*.npz
+dataset/processed/landmarks/*.npy
+dataset/processed/landmarks/chunks/
+
+# Large archives and temporary exports
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.tmp
+*.temp
+
+# Frontend dependencies, caches, and generated builds
+Website/node_modules/
+Website/dist/
+Website/.vite/
+Website/coverage/
+Website/live-test-results/
+Website/*.tsbuildinfo
+
+# Vercel local state
+.vercel/

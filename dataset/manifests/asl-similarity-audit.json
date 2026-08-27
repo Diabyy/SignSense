@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-26T11:49:00.616974+00:00",
+  "mode": "ASL",
+  "sample_count": 70146,
+  "hash": "64-bit difference hash",
+  "maximum_hamming_distance": 2,
+  "cross_split_pair_counts": {
+    "train_vs_val": 0,
+    "train_vs_test": 0,
+    "val_vs_test": 0
+  },
+  "examples": [],
+  "examples_truncated": false
+}

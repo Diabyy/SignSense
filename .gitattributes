@@ -1,0 +1,5 @@
+* text=auto
+
+*.joblib binary
+*.task binary
+*.webp binary

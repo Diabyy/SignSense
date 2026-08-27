@@ -1,0 +1,557 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-25T16:28:49.760385+00:00",
+  "mode": "BISINDO",
+  "feature_version": "hand-pose-v2",
+  "feature_count": 132,
+  "model_sha256": "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1",
+  "model_options": {
+    "num_hands": 2,
+    "min_hand_detection_confidence": 0.35,
+    "min_hand_presence_confidence": 0.35,
+    "min_tracking_confidence": 0.5
+  },
+  "recovery_policy": {
+    "multimodal_xml_crop_margin": 1.0,
+    "prefer_crop_when_expected_hands_detected": true,
+    "retain_partial_two_hand_features": true
+  },
+  "sample_count": 28303,
+  "usable_count": 26274,
+  "coverage": 0.928311,
+  "reason_counts": {
+    "no_hands_detected": 2029,
+    "ok": 23624,
+    "partial_hands": 2650
+  },
+  "strategy_counts": {
+    "full_frame": 10040,
+    "xml_crop": 18263
+  },
+  "complete_detection_count": 23624,
+  "partial_detection_count": 2650,
+  "by_split": {
+    "test": {
+      "total": 519,
+      "usable": 510,
+      "coverage": 0.982659
+    },
+    "train": {
+      "total": 24191,
+      "usable": 22563,
+      "coverage": 0.932702
+    },
+    "val": {
+      "total": 3593,
+      "usable": 3201,
+      "coverage": 0.890899
+    }
+  },
+  "by_source": {
+    "binus_hand_sign": {
+      "total": 519,
+      "usable": 510,
+      "coverage": 0.982659
+    },
+    "bisindo_um_v1": {
+      "total": 8040,
+      "usable": 6140,
+      "coverage": 0.763682
+    },
+    "multimodal_bisindo_v2": {
+      "total": 19744,
+      "usable": 19624,
+      "coverage": 0.993922
+    }
+  },
+  "by_label": {
+    "A": {
+      "total": 1440,
+      "usable": 1409,
+      "coverage": 0.978472
+    },
+    "B": {
+      "total": 1644,
+      "usable": 1613,
+      "coverage": 0.981144
+    },
+    "C": {
+      "total": 1427,
+      "usable": 1316,
+      "coverage": 0.922214
+    },
+    "D": {
+      "total": 1345,
+      "usable": 1246,
+      "coverage": 0.926394
+    },
+    "E": {
+      "total": 1466,
+      "usable": 1344,
+      "coverage": 0.91678
+    },
+    "F": {
+      "total": 1475,
+      "usable": 1340,
+      "coverage": 0.908475
+    },
+    "G": {
+      "total": 1217,
+      "usable": 1137,
+      "coverage": 0.934265
+    },
+    "H": {
+      "total": 1386,
+      "usable": 1313,
+      "coverage": 0.94733
+    },
+    "I": {
+      "total": 1255,
+      "usable": 1145,
+      "coverage": 0.912351
+    },
+    "K": {
+      "total": 1276,
+      "usable": 1244,
+      "coverage": 0.974922
+    },
+    "L": {
+      "total": 1075,
+      "usable": 964,
+      "coverage": 0.896744
+    },
+    "M": {
+      "total": 853,
+      "usable": 831,
+      "coverage": 0.974209
+    },
+    "N": {
+      "total": 751,
+      "usable": 734,
+      "coverage": 0.977364
+    },
+    "O": {
+      "total": 892,
+      "usable": 792,
+      "coverage": 0.887892
+    },
+    "P": {
+      "total": 1293,
+      "usable": 1268,
+      "coverage": 0.980665
+    },
+    "Q": {
+      "total": 863,
+      "usable": 821,
+      "coverage": 0.951333
+    },
+    "S": {
+      "total": 849,
+      "usable": 835,
+      "coverage": 0.98351
+    },
+    "T": {
+      "total": 1193,
+      "usable": 1143,
+      "coverage": 0.958089
+    },
+    "U": {
+      "total": 885,
+      "usable": 755,
+      "coverage": 0.853107
+    },
+    "UNKNOWN": {
+      "total": 2390,
+      "usable": 2093,
+      "coverage": 0.875732
+    },
+    "V": {
+      "total": 867,
+      "usable": 710,
+      "coverage": 0.818916
+    },
+    "W": {
+      "total": 852,
+      "usable": 760,
+      "coverage": 0.892019
+    },
+    "X": {
+      "total": 813,
+      "usable": 756,
+      "coverage": 0.929889
+    },
+    "Y": {
+      "total": 796,
+      "usable": 705,
+      "coverage": 0.885678
+    }
+  },
+  "by_split_label": {
+    "test": {
+      "A": {
+        "total": 19,
+        "usable": 19,
+        "coverage": 1.0
+      },
+      "B": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "C": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "D": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "E": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "F": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "G": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "H": {
+        "total": 20,
+        "usable": 19,
+        "coverage": 0.95
+      },
+      "I": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "K": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "L": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "M": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "N": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "O": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "P": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "Q": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "S": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "T": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "U": {
+        "total": 20,
+        "usable": 17,
+        "coverage": 0.85
+      },
+      "UNKNOWN": {
+        "total": 60,
+        "usable": 60,
+        "coverage": 1.0
+      },
+      "V": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "W": {
+        "total": 20,
+        "usable": 19,
+        "coverage": 0.95
+      },
+      "X": {
+        "total": 20,
+        "usable": 20,
+        "coverage": 1.0
+      },
+      "Y": {
+        "total": 20,
+        "usable": 16,
+        "coverage": 0.8
+      }
+    },
+    "train": {
+      "A": {
+        "total": 1244,
+        "usable": 1218,
+        "coverage": 0.9791
+      },
+      "B": {
+        "total": 1428,
+        "usable": 1402,
+        "coverage": 0.981793
+      },
+      "C": {
+        "total": 1231,
+        "usable": 1148,
+        "coverage": 0.932575
+      },
+      "D": {
+        "total": 1159,
+        "usable": 1078,
+        "coverage": 0.930112
+      },
+      "E": {
+        "total": 1268,
+        "usable": 1177,
+        "coverage": 0.928233
+      },
+      "F": {
+        "total": 1275,
+        "usable": 1164,
+        "coverage": 0.912941
+      },
+      "G": {
+        "total": 1045,
+        "usable": 980,
+        "coverage": 0.937799
+      },
+      "H": {
+        "total": 1199,
+        "usable": 1139,
+        "coverage": 0.949958
+      },
+      "I": {
+        "total": 1081,
+        "usable": 993,
+        "coverage": 0.918594
+      },
+      "K": {
+        "total": 1100,
+        "usable": 1073,
+        "coverage": 0.975455
+      },
+      "L": {
+        "total": 919,
+        "usable": 832,
+        "coverage": 0.905332
+      },
+      "M": {
+        "total": 720,
+        "usable": 703,
+        "coverage": 0.976389
+      },
+      "N": {
+        "total": 628,
+        "usable": 612,
+        "coverage": 0.974522
+      },
+      "O": {
+        "total": 755,
+        "usable": 675,
+        "coverage": 0.89404
+      },
+      "P": {
+        "total": 1117,
+        "usable": 1102,
+        "coverage": 0.986571
+      },
+      "Q": {
+        "total": 729,
+        "usable": 689,
+        "coverage": 0.94513
+      },
+      "S": {
+        "total": 714,
+        "usable": 703,
+        "coverage": 0.984594
+      },
+      "T": {
+        "total": 1026,
+        "usable": 985,
+        "coverage": 0.960039
+      },
+      "U": {
+        "total": 747,
+        "usable": 640,
+        "coverage": 0.85676
+      },
+      "UNKNOWN": {
+        "total": 2004,
+        "usable": 1763,
+        "coverage": 0.879741
+      },
+      "V": {
+        "total": 732,
+        "usable": 605,
+        "coverage": 0.826503
+      },
+      "W": {
+        "total": 719,
+        "usable": 645,
+        "coverage": 0.897079
+      },
+      "X": {
+        "total": 684,
+        "usable": 640,
+        "coverage": 0.935673
+      },
+      "Y": {
+        "total": 667,
+        "usable": 597,
+        "coverage": 0.895052
+      }
+    },
+    "val": {
+      "A": {
+        "total": 177,
+        "usable": 172,
+        "coverage": 0.971751
+      },
+      "B": {
+        "total": 196,
+        "usable": 191,
+        "coverage": 0.97449
+      },
+      "C": {
+        "total": 176,
+        "usable": 148,
+        "coverage": 0.840909
+      },
+      "D": {
+        "total": 166,
+        "usable": 148,
+        "coverage": 0.891566
+      },
+      "E": {
+        "total": 178,
+        "usable": 147,
+        "coverage": 0.825843
+      },
+      "F": {
+        "total": 180,
+        "usable": 156,
+        "coverage": 0.866667
+      },
+      "G": {
+        "total": 152,
+        "usable": 137,
+        "coverage": 0.901316
+      },
+      "H": {
+        "total": 167,
+        "usable": 155,
+        "coverage": 0.928144
+      },
+      "I": {
+        "total": 154,
+        "usable": 132,
+        "coverage": 0.857143
+      },
+      "K": {
+        "total": 156,
+        "usable": 151,
+        "coverage": 0.967949
+      },
+      "L": {
+        "total": 136,
+        "usable": 112,
+        "coverage": 0.823529
+      },
+      "M": {
+        "total": 113,
+        "usable": 108,
+        "coverage": 0.955752
+      },
+      "N": {
+        "total": 103,
+        "usable": 102,
+        "coverage": 0.990291
+      },
+      "O": {
+        "total": 117,
+        "usable": 97,
+        "coverage": 0.82906
+      },
+      "P": {
+        "total": 156,
+        "usable": 146,
+        "coverage": 0.935897
+      },
+      "Q": {
+        "total": 114,
+        "usable": 112,
+        "coverage": 0.982456
+      },
+      "S": {
+        "total": 115,
+        "usable": 112,
+        "coverage": 0.973913
+      },
+      "T": {
+        "total": 147,
+        "usable": 138,
+        "coverage": 0.938776
+      },
+      "U": {
+        "total": 118,
+        "usable": 98,
+        "coverage": 0.830508
+      },
+      "UNKNOWN": {
+        "total": 326,
+        "usable": 270,
+        "coverage": 0.828221
+      },
+      "V": {
+        "total": 115,
+        "usable": 85,
+        "coverage": 0.73913
+      },
+      "W": {
+        "total": 113,
+        "usable": 96,
+        "coverage": 0.849558
+      },
+      "X": {
+        "total": 109,
+        "usable": 96,
+        "coverage": 0.880734
+      },
+      "Y": {
+        "total": 109,
+        "usable": 92,
+        "coverage": 0.844037
+      }
+    }
+  }
+}

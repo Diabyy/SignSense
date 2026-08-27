@@ -1,0 +1,1093 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-24T11:31:36.345533+00:00",
+  "dataset_root": "D:\\Enuma\\Project\\SignSense-Bahasa Isyarat\\dataset",
+  "sources": {
+    "multimodal_bisindo_train": {
+      "collection": "multimodal_bisindo_v2",
+      "language": "BISINDO",
+      "split": "train",
+      "canonical": true,
+      "root": "raw/bisindo/alphabet/multimodal-bisindo-v2/A Multimodal BISINDO Corpus Annotated Images and V/Train",
+      "file_count": 35554,
+      "total_bytes": 1050086098,
+      "extension_counts": {
+        ".jpg": 17777,
+        ".xml": 17777
+      },
+      "image_count": 17777,
+      "valid_image_count": 17777,
+      "invalid_image_count": 0,
+      "invalid_images": [],
+      "class_counts": {
+        "A": 993,
+        "B": 1051,
+        "C": 990,
+        "D": 916,
+        "E": 1023,
+        "F": 999,
+        "G": 828,
+        "H": 938,
+        "I": 856,
+        "J": 889,
+        "K": 832,
+        "L": 686,
+        "M": 487,
+        "N": 357,
+        "O": 526,
+        "P": 821,
+        "Q": 507,
+        "R": 127,
+        "S": 491,
+        "T": 738,
+        "U": 518,
+        "V": 506,
+        "W": 494,
+        "X": 457,
+        "Y": 450,
+        "Z": 297
+      },
+      "dimension_counts": {
+        "640x512": 17,
+        "640x589": 1381,
+        "640x608": 38,
+        "640x640": 16341
+      },
+      "mode_counts": {
+        "RGB": 17777
+      },
+      "duplicates": {
+        "group_count": 1,
+        "files_in_duplicate_groups": 2,
+        "redundant_file_count": 1,
+        "cross_label_group_count": 1,
+        "examples": [
+          {
+            "sha256": "454179b8363774ada9befdd0294a74dedde2543495ca4cd7b4f4791840443fe6",
+            "labels": [
+              "J",
+              "N"
+            ],
+            "files": [
+              "raw/bisindo/alphabet/multimodal-bisindo-v2/A Multimodal BISINDO Corpus Annotated Images and V/Train/J/frame_5030_jpg.rf.2b0f3a41b29fd8ccf0b6aab20aaa1dbc.jpg",
+              "raw/bisindo/alphabet/multimodal-bisindo-v2/A Multimodal BISINDO Corpus Annotated Images and V/Train/N/frame_5030_jpg.rf.2b0f3a41b29fd8ccf0b6aab20aaa1dbc.jpg"
+            ],
+            "omitted_file_count": 0
+          }
+        ],
+        "examples_truncated": false
+      },
+      "annotations": {
+        "xml_count": 17777,
+        "paired_image_count": 17770,
+        "image_without_xml_count": 7,
+        "orphan_xml_count": 7,
+        "parse_error_count": 0,
+        "object_count_distribution": {
+          "1": 17775,
+          "2": 2
+        },
+        "object_label_counts": {
+          "A": 993,
+          "B": 1051,
+          "C": 990,
+          "D": 916,
+          "E": 1023,
+          "F": 1000,
+          "G": 829,
+          "H": 938,
+          "I": 855,
+          "J": 891,
+          "K": 832,
+          "L": 685,
+          "M": 487,
+          "N": 359,
+          "O": 526,
+          "P": 821,
+          "Q": 507,
+          "R": 127,
+          "S": 491,
+          "T": 737,
+          "U": 517,
+          "V": 506,
+          "W": 494,
+          "X": 457,
+          "Y": 450,
+          "Z": 297
+        },
+        "folder_label_absent_count": 0,
+        "xml_with_additional_labels_count": 2,
+        "invalid_bbox_count": 0,
+        "filename_mismatch_count": 0,
+        "examples": {
+          "image_without_xml": [
+            "i/frame_5008_jpg.rf.af747b6be243f844f2006fff2f27bd6f",
+            "l/frame_28369",
+            "l/frame_57734",
+            "t/frame_87452",
+            "t/frame_87470",
+            "t/frame_87644",
+            "u/frame_33209_jpg.rf.ab3cca2a00054569d21633fc4d101979"
+          ],
+          "orphan_xml": [
+            "f/img20230127162747_jpg.rf.6e5dfe431e0957df7987bb8cc16e8077",
+            "g/frame_0102-3-_jpg.rf.df1615991f8d6da02c3df167b26f7e47",
+            "j/frame_10001_jpg.rf.03a5c29f618c0938679846d4275c4bc1",
+            "l/frame_11152_jpg.rf.3d4a73bdecfe3a914b1b8928f79f269e",
+            "n/frame_0102_jpg.rf.27d5d78f207ea1aac5b3bbb5e5e8bda0",
+            "t/frame_87441",
+            "t/frame_87851"
+          ],
+          "parse_errors": [],
+          "folder_label_absent": [],
+          "additional_labels": [
+            {
+              "path": "raw/bisindo/alphabet/multimodal-bisindo-v2/A Multimodal BISINDO Corpus Annotated Images and V/Train/J/frame_5030_jpg.rf.2b0f3a41b29fd8ccf0b6aab20aaa1dbc.xml",
+              "folder_label": "J",
+              "additional_labels": [
+                "N"
+              ]
+            },
+            {
+              "path": "raw/bisindo/alphabet/multimodal-bisindo-v2/A Multimodal BISINDO Corpus Annotated Images and V/Train/N/frame_5030_jpg.rf.2b0f3a41b29fd8ccf0b6aab20aaa1dbc.xml",
+              "folder_label": "N",
+              "additional_labels": [
+                "J"
+              ]
+            }
+          ],
+          "invalid_bbox": [],
+          "filename_mismatch": []
+        }
+      }
+    },
+    "multimodal_bisindo_test": {
+      "collection": "multimodal_bisindo_v2",
+      "language": "BISINDO",
+      "split": "test",
+      "canonical": true,
+      "root": "raw/bisindo/alphabet/multimodal-bisindo-v2/A Multimodal BISINDO Corpus Annotated Images and V/Test",
+      "file_count": 3952,
+      "total_bytes": 113878734,
+      "extension_counts": {
+        ".jpg": 1976,
+        ".xml": 1976
+      },
+      "image_count": 1976,
+      "valid_image_count": 1976,
+      "invalid_image_count": 0,
+      "invalid_images": [],
+      "class_counts": {
+        "A": 88,
+        "B": 233,
+        "C": 77,
+        "D": 69,
+        "E": 83,
+        "F": 116,
+        "G": 69,
+        "H": 128,
+        "I": 80,
+        "J": 78,
+        "K": 124,
+        "L": 71,
+        "M": 46,
+        "N": 75,
+        "O": 46,
+        "P": 152,
+        "Q": 36,
+        "R": 21,
+        "S": 38,
+        "T": 138,
+        "U": 48,
+        "V": 41,
+        "W": 38,
+        "X": 36,
+        "Y": 26,
+        "Z": 19
+      },
+      "dimension_counts": {
+        "640x512": 3,
+        "640x589": 33,
+        "640x640": 1940
+      },
+      "mode_counts": {
+        "RGB": 1976
+      },
+      "duplicates": {
+        "group_count": 0,
+        "files_in_duplicate_groups": 0,
+        "redundant_file_count": 0,
+        "cross_label_group_count": 0,
+        "examples": [],
+        "examples_truncated": false
+      },
+      "annotations": {
+        "xml_count": 1976,
+        "paired_image_count": 1976,
+        "image_without_xml_count": 0,
+        "orphan_xml_count": 0,
+        "parse_error_count": 0,
+        "object_count_distribution": {
+          "1": 1976
+        },
+        "object_label_counts": {
+          "A": 88,
+          "B": 233,
+          "C": 77,
+          "D": 69,
+          "E": 83,
+          "F": 116,
+          "G": 69,
+          "H": 128,
+          "I": 80,
+          "J": 78,
+          "K": 124,
+          "L": 71,
+          "M": 46,
+          "N": 75,
+          "O": 46,
+          "P": 152,
+          "Q": 36,
+          "R": 21,
+          "S": 38,
+          "T": 138,
+          "U": 48,
+          "V": 41,
+          "W": 38,
+          "X": 36,
+          "Y": 26,
+          "Z": 19
+        },
+        "folder_label_absent_count": 0,
+        "xml_with_additional_labels_count": 0,
+        "invalid_bbox_count": 0,
+        "filename_mismatch_count": 0,
+        "examples": {
+          "image_without_xml": [],
+          "orphan_xml": [],
+          "parse_errors": [],
+          "folder_label_absent": [],
+          "additional_labels": [],
+          "invalid_bbox": [],
+          "filename_mismatch": []
+        }
+      }
+    },
+    "bisindo_um": {
+      "collection": "bisindo_um_v1",
+      "language": "BISINDO",
+      "split": "unsplit",
+      "canonical": true,
+      "root": "raw/bisindo/alphabet/bisindo-um-v1/BISINDO DATASET/Mendeley BISINDO",
+      "file_count": 8040,
+      "total_bytes": 834305300,
+      "extension_counts": {
+        ".jpg": 8040
+      },
+      "image_count": 8040,
+      "valid_image_count": 8040,
+      "invalid_image_count": 0,
+      "invalid_images": [],
+      "class_counts": {
+        "A": 340,
+        "B": 340,
+        "C": 340,
+        "D": 340,
+        "E": 340,
+        "F": 340,
+        "G": 300,
+        "H": 300,
+        "I": 300,
+        "J": 300,
+        "K": 300,
+        "L": 300,
+        "M": 300,
+        "N": 300,
+        "O": 300,
+        "P": 300,
+        "Q": 300,
+        "R": 300,
+        "S": 300,
+        "T": 300,
+        "U": 300,
+        "V": 300,
+        "W": 300,
+        "X": 300,
+        "Y": 300,
+        "Z": 300
+      },
+      "dimension_counts": {
+        "640x480": 8040
+      },
+      "mode_counts": {
+        "RGB": 8040
+      },
+      "duplicates": {
+        "group_count": 0,
+        "files_in_duplicate_groups": 0,
+        "redundant_file_count": 0,
+        "cross_label_group_count": 0,
+        "examples": [],
+        "examples_truncated": false
+      }
+    },
+    "binus_collected": {
+      "collection": "binus_hand_sign",
+      "language": "BISINDO",
+      "split": "unsplit",
+      "canonical": true,
+      "root": "raw/bisindo/alphabet/binus-hand-sign/collectedimages",
+      "file_count": 520,
+      "total_bytes": 18794671,
+      "extension_counts": {
+        ".jpg": 520
+      },
+      "image_count": 520,
+      "valid_image_count": 520,
+      "invalid_image_count": 0,
+      "invalid_images": [],
+      "class_counts": {
+        "A": 20,
+        "B": 20,
+        "C": 20,
+        "D": 20,
+        "E": 20,
+        "F": 20,
+        "G": 20,
+        "H": 20,
+        "I": 20,
+        "J": 20,
+        "K": 20,
+        "L": 20,
+        "M": 20,
+        "N": 20,
+        "O": 20,
+        "P": 20,
+        "Q": 20,
+        "R": 20,
+        "S": 20,
+        "T": 20,
+        "U": 20,
+        "V": 20,
+        "W": 20,
+        "X": 20,
+        "Y": 20,
+        "Z": 20
+      },
+      "dimension_counts": {
+        "640x480": 520
+      },
+      "mode_counts": {
+        "RGB": 520
+      },
+      "duplicates": {
+        "group_count": 1,
+        "files_in_duplicate_groups": 2,
+        "redundant_file_count": 1,
+        "cross_label_group_count": 0,
+        "examples": [
+          {
+            "sha256": "64abd40d0a42bbca8aad0471686bc4aaba21bc8c96475058f7e3c876fe44b532",
+            "labels": [
+              "A"
+            ],
+            "files": [
+              "raw/bisindo/alphabet/binus-hand-sign/collectedimages/A/A.571f5733-e263-11ed-993a-001a7dda7115 - Copy.jpg",
+              "raw/bisindo/alphabet/binus-hand-sign/collectedimages/A/A.571f5733-e263-11ed-993a-001a7dda7115.jpg"
+            ],
+            "omitted_file_count": 0
+          }
+        ],
+        "examples_truncated": false
+      }
+    },
+    "binus_train": {
+      "collection": "binus_hand_sign",
+      "language": "BISINDO",
+      "split": "train",
+      "canonical": false,
+      "root": "raw/bisindo/alphabet/binus-hand-sign/train",
+      "file_count": 832,
+      "total_bytes": 15330489,
+      "extension_counts": {
+        ".jpg": 416,
+        ".xml": 416
+      },
+      "image_count": 416,
+      "valid_image_count": 416,
+      "invalid_image_count": 0,
+      "invalid_images": [],
+      "class_counts": {
+        "A": 16,
+        "B": 16,
+        "C": 16,
+        "D": 16,
+        "E": 16,
+        "F": 16,
+        "G": 16,
+        "H": 16,
+        "I": 16,
+        "J": 16,
+        "K": 16,
+        "L": 16,
+        "M": 16,
+        "N": 16,
+        "O": 16,
+        "P": 16,
+        "Q": 16,
+        "R": 16,
+        "S": 16,
+        "T": 16,
+        "U": 16,
+        "V": 16,
+        "W": 16,
+        "X": 16,
+        "Y": 16,
+        "Z": 16
+      },
+      "dimension_counts": {
+        "640x480": 416
+      },
+      "mode_counts": {
+        "RGB": 416
+      },
+      "duplicates": {
+        "group_count": 5,
+        "files_in_duplicate_groups": 10,
+        "redundant_file_count": 5,
+        "cross_label_group_count": 0,
+        "examples": [
+          {
+            "sha256": "64abd40d0a42bbca8aad0471686bc4aaba21bc8c96475058f7e3c876fe44b532",
+            "labels": [
+              "A"
+            ],
+            "files": [
+              "raw/bisindo/alphabet/binus-hand-sign/train/A.571f5733-e263-11ed-993a-001a7dda7115 - Copy.jpg",
+              "raw/bisindo/alphabet/binus-hand-sign/train/A.571f5733-e263-11ed-993a-001a7dda7115.jpg"
+            ],
+            "omitted_file_count": 0
+          },
+          {
+            "sha256": "d0692700673bb7840fc7ae43d7a025311321ad7044e670a0ee6b7d44dde0217c",
+            "labels": [
+              "F"
+            ],
+            "files": [
+              "raw/bisindo/alphabet/binus-hand-sign/train/F.7908d7c8-e264-11ed-bf54-001a7dda7115 - Copy.jpg",
+              "raw/bisindo/alphabet/binus-hand-sign/train/F.7908d7c8-e264-11ed-bf54-001a7dda7115.jpg"
+            ],
+            "omitted_file_count": 0
+          },
+          {
+            "sha256": "ac744dd11cd3e08db9ec65dcbf0b2a844c4a61b168a3af18ee1697dd042565f2",
+            "labels": [
+              "Q"
+            ],
+            "files": [
+              "raw/bisindo/alphabet/binus-hand-sign/train/Q.6bdf2770-e267-11ed-b556-001a7dda7115 - Copy.jpg",
+              "raw/bisindo/alphabet/binus-hand-sign/train/Q.6bdf2770-e267-11ed-b556-001a7dda7115.jpg"
+            ],
+            "omitted_file_count": 0
+          },
+          {
+            "sha256": "dc86c108eee5d04b074bb3dc80f37ae2fea19e4134cab783c0aaed5137373f31",
+            "labels": [
+              "Q"
+            ],
+            "files": [
+              "raw/bisindo/alphabet/binus-hand-sign/train/Q.83c00b52-e267-11ed-b4ea-001a7dda7115 - Copy.jpg",
+              "raw/bisindo/alphabet/binus-hand-sign/train/Q.83c00b52-e267-11ed-b4ea-001a7dda7115.jpg"
+            ],
+            "omitted_file_count": 0
+          },
+          {
+            "sha256": "3ab450ffb5b7cf680014ee1f3c26141066d82575950c7ea4a65cd68b227c2329",
+            "labels": [
+              "Y"
+            ],
+            "files": [
+              "raw/bisindo/alphabet/binus-hand-sign/train/Y.882cae84-e269-11ed-9baf-001a7dda7115 - Copy.jpg",
+              "raw/bisindo/alphabet/binus-hand-sign/train/Y.882cae84-e269-11ed-9baf-001a7dda7115.jpg"
+            ],
+            "omitted_file_count": 0
+          }
+        ],
+        "examples_truncated": false
+      },
+      "annotations": {
+        "xml_count": 416,
+        "paired_image_count": 416,
+        "image_without_xml_count": 0,
+        "orphan_xml_count": 0,
+        "parse_error_count": 0,
+        "object_count_distribution": {
+          "1": 416
+        },
+        "object_label_counts": {
+          "A": 16,
+          "B": 16,
+          "C": 16,
+          "D": 16,
+          "E": 16,
+          "F": 16,
+          "G": 16,
+          "H": 16,
+          "I": 16,
+          "J": 16,
+          "K": 16,
+          "L": 16,
+          "M": 16,
+          "N": 16,
+          "O": 16,
+          "P": 16,
+          "Q": 16,
+          "R": 16,
+          "S": 16,
+          "T": 16,
+          "U": 16,
+          "V": 16,
+          "W": 16,
+          "X": 16,
+          "Y": 16,
+          "Z": 16
+        },
+        "folder_label_absent_count": 0,
+        "xml_with_additional_labels_count": 0,
+        "invalid_bbox_count": 0,
+        "filename_mismatch_count": 0,
+        "examples": {
+          "image_without_xml": [],
+          "orphan_xml": [],
+          "parse_errors": [],
+          "folder_label_absent": [],
+          "additional_labels": [],
+          "invalid_bbox": [],
+          "filename_mismatch": []
+        }
+      }
+    },
+    "binus_test": {
+      "collection": "binus_hand_sign",
+      "language": "BISINDO",
+      "split": "test",
+      "canonical": false,
+      "root": "raw/bisindo/alphabet/binus-hand-sign/test",
+      "file_count": 208,
+      "total_bytes": 3808288,
+      "extension_counts": {
+        ".jpg": 104,
+        ".xml": 104
+      },
+      "image_count": 104,
+      "valid_image_count": 104,
+      "invalid_image_count": 0,
+      "invalid_images": [],
+      "class_counts": {
+        "A": 4,
+        "B": 4,
+        "C": 4,
+        "D": 4,
+        "E": 4,
+        "F": 4,
+        "G": 4,
+        "H": 4,
+        "I": 4,
+        "J": 4,
+        "K": 4,
+        "L": 4,
+        "M": 4,
+        "N": 4,
+        "O": 4,
+        "P": 4,
+        "Q": 4,
+        "R": 4,
+        "S": 4,
+        "T": 4,
+        "U": 4,
+        "V": 4,
+        "W": 4,
+        "X": 4,
+        "Y": 4,
+        "Z": 4
+      },
+      "dimension_counts": {
+        "640x480": 104
+      },
+      "mode_counts": {
+        "RGB": 104
+      },
+      "duplicates": {
+        "group_count": 1,
+        "files_in_duplicate_groups": 2,
+        "redundant_file_count": 1,
+        "cross_label_group_count": 0,
+        "examples": [
+          {
+            "sha256": "11b1a77eb9960eaa2df40d56f6ccaa8ba4d1e166dca077aceb87a09b84b426d2",
+            "labels": [
+              "H"
+            ],
+            "files": [
+              "raw/bisindo/alphabet/binus-hand-sign/test/H.12025c2e-e265-11ed-a50e-001a7dda7115 - Copy.jpg",
+              "raw/bisindo/alphabet/binus-hand-sign/test/H.12025c2e-e265-11ed-a50e-001a7dda7115.jpg"
+            ],
+            "omitted_file_count": 0
+          }
+        ],
+        "examples_truncated": false
+      },
+      "annotations": {
+        "xml_count": 104,
+        "paired_image_count": 104,
+        "image_without_xml_count": 0,
+        "orphan_xml_count": 0,
+        "parse_error_count": 0,
+        "object_count_distribution": {
+          "1": 104
+        },
+        "object_label_counts": {
+          "A": 4,
+          "B": 4,
+          "C": 4,
+          "D": 4,
+          "E": 4,
+          "F": 4,
+          "G": 4,
+          "H": 4,
+          "I": 4,
+          "J": 4,
+          "K": 4,
+          "L": 4,
+          "M": 4,
+          "N": 4,
+          "O": 4,
+          "P": 4,
+          "Q": 4,
+          "R": 4,
+          "S": 4,
+          "T": 4,
+          "U": 4,
+          "V": 4,
+          "W": 4,
+          "X": 4,
+          "Y": 4,
+          "Z": 4
+        },
+        "folder_label_absent_count": 0,
+        "xml_with_additional_labels_count": 0,
+        "invalid_bbox_count": 0,
+        "filename_mismatch_count": 0,
+        "examples": {
+          "image_without_xml": [],
+          "orphan_xml": [],
+          "parse_errors": [],
+          "folder_label_absent": [],
+          "additional_labels": [],
+          "invalid_bbox": [],
+          "filename_mismatch": []
+        }
+      }
+    },
+    "asl_train": {
+      "collection": "asl_alphabet_v1",
+      "language": "ASL",
+      "split": "train",
+      "canonical": true,
+      "root": "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train",
+      "file_count": 87000,
+      "total_bytes": 1106140179,
+      "extension_counts": {
+        ".jpg": 87000
+      },
+      "image_count": 87000,
+      "valid_image_count": 87000,
+      "invalid_image_count": 0,
+      "invalid_images": [],
+      "class_counts": {
+        "A": 3000,
+        "B": 3000,
+        "C": 3000,
+        "D": 3000,
+        "E": 3000,
+        "F": 3000,
+        "G": 3000,
+        "H": 3000,
+        "I": 3000,
+        "J": 3000,
+        "K": 3000,
+        "L": 3000,
+        "M": 3000,
+        "N": 3000,
+        "O": 3000,
+        "P": 3000,
+        "Q": 3000,
+        "R": 3000,
+        "S": 3000,
+        "T": 3000,
+        "U": 3000,
+        "V": 3000,
+        "W": 3000,
+        "X": 3000,
+        "Y": 3000,
+        "Z": 3000,
+        "del": 3000,
+        "nothing": 3000,
+        "space": 3000
+      },
+      "dimension_counts": {
+        "200x200": 87000
+      },
+      "mode_counts": {
+        "RGB": 87000
+      },
+      "duplicates": {
+        "group_count": 0,
+        "files_in_duplicate_groups": 0,
+        "redundant_file_count": 0,
+        "cross_label_group_count": 0,
+        "examples": [],
+        "examples_truncated": false
+      }
+    },
+    "asl_test": {
+      "collection": "asl_alphabet_v1",
+      "language": "ASL",
+      "split": "test",
+      "canonical": true,
+      "root": "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test",
+      "file_count": 28,
+      "total_bytes": 331303,
+      "extension_counts": {
+        ".jpg": 28
+      },
+      "image_count": 28,
+      "valid_image_count": 28,
+      "invalid_image_count": 0,
+      "invalid_images": [],
+      "class_counts": {
+        "A": 1,
+        "B": 1,
+        "C": 1,
+        "D": 1,
+        "E": 1,
+        "F": 1,
+        "G": 1,
+        "H": 1,
+        "I": 1,
+        "J": 1,
+        "K": 1,
+        "L": 1,
+        "M": 1,
+        "N": 1,
+        "O": 1,
+        "P": 1,
+        "Q": 1,
+        "R": 1,
+        "S": 1,
+        "T": 1,
+        "U": 1,
+        "V": 1,
+        "W": 1,
+        "X": 1,
+        "Y": 1,
+        "Z": 1,
+        "nothing": 1,
+        "space": 1
+      },
+      "dimension_counts": {
+        "200x200": 28
+      },
+      "mode_counts": {
+        "RGB": 28
+      },
+      "duplicates": {
+        "group_count": 0,
+        "files_in_duplicate_groups": 0,
+        "redundant_file_count": 0,
+        "cross_label_group_count": 0,
+        "examples": [],
+        "examples_truncated": false
+      }
+    }
+  },
+  "split_overlap": {
+    "multimodal_bisindo_train_vs_test": {
+      "overlapping_hash_count": 0,
+      "left_matching_file_count": 0,
+      "right_matching_file_count": 0,
+      "examples": [],
+      "examples_truncated": false
+    },
+    "binus_train_vs_test": {
+      "overlapping_hash_count": 0,
+      "left_matching_file_count": 0,
+      "right_matching_file_count": 0,
+      "examples": [],
+      "examples_truncated": false
+    },
+    "asl_train_vs_test": {
+      "overlapping_hash_count": 28,
+      "left_matching_file_count": 28,
+      "right_matching_file_count": 28,
+      "examples": [
+        {
+          "sha256": "039507537a9ba61973e759c423e1edc7766b7231a3a74ad73984e909ab810dc5",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/U/U1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/U_test.jpg"
+          ]
+        },
+        {
+          "sha256": "046d4651e5fdd7b941254c2339befcf10cbe5c5c929e01c92b0450d07268d002",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/Y/Y1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/Y_test.jpg"
+          ]
+        },
+        {
+          "sha256": "05f854bcb7cf447b5ba2aab1f4cdd1083756a722be3075ef6b0925ecc83e85e7",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/E/E1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/E_test.jpg"
+          ]
+        },
+        {
+          "sha256": "0982c446ab27630ca58de46655664c96134ccb7e4d4dc931a9ac1acd922822a5",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/J/J1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/J_test.jpg"
+          ]
+        },
+        {
+          "sha256": "0a749e0be4944699b2a9bb655bff1a5c7f99092b38b7b69c4205513d656a50ef",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/I/I1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/I_test.jpg"
+          ]
+        },
+        {
+          "sha256": "262956bcd3312bbccfd1075f456f58e30a833a3058089825ebfd99d597058c07",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/nothing/nothing1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/nothing_test.jpg"
+          ]
+        },
+        {
+          "sha256": "2990c05899800f22b1a3511a1fed3e4844b1a5544c0dccce31be81c807506fa5",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/C/C1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/C_test.jpg"
+          ]
+        },
+        {
+          "sha256": "3b3d9a397a009bbf5379228fe7cdc9f8d07f129580c10d685cdf8c477b01e1ce",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/L/L1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/L_test.jpg"
+          ]
+        },
+        {
+          "sha256": "45ca2df0062b019da28e397e4f764cfba98a4e6afe5b21474ca2183fc7e37c08",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/A/A2995.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/A_test.jpg"
+          ]
+        },
+        {
+          "sha256": "4d91f7a55247f3163ca3e41a2966644af11ac95fafc90e6f0c5c5cf1d32261cb",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/K/K1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/K_test.jpg"
+          ]
+        },
+        {
+          "sha256": "5cff56fd5b8784ae089b9071bd51eccd03d971fc2ea4f1b507e7246614ff303c",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/F/F1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/F_test.jpg"
+          ]
+        },
+        {
+          "sha256": "5e44042b7656ab97d116a94a6b751355ab17688852b328575880177c935eadb1",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/V/V1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/V_test.jpg"
+          ]
+        },
+        {
+          "sha256": "6bf64562ed66a9e62c68f0875fee3ce731adca505c0702d4e69ffeb23ec21513",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/B/B1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/B_test.jpg"
+          ]
+        },
+        {
+          "sha256": "70025e2ea954d80164800b4bf46499f6eb8de68212ddf075bd10934ec7b1ff03",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/H/H1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/H_test.jpg"
+          ]
+        },
+        {
+          "sha256": "738b28ff822b5cd0b4340f08fe76c2897b0066311a3de58b87163481b115e4bd",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/T/T1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/T_test.jpg"
+          ]
+        },
+        {
+          "sha256": "75292e4c90fac07f1348d0bd14ab13eb0106bce46a22ee6da913a8e8e69f4b61",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/Q/Q1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/Q_test.jpg"
+          ]
+        },
+        {
+          "sha256": "79952c71912691cc94cb966bad9c25ff4beda629ac727119d4f9ba5ea837eeab",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/R/R1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/R_test.jpg"
+          ]
+        },
+        {
+          "sha256": "7ebcea7393d2426aa3bbe9e6e9bce221208315b43e86e0edca398127b6724889",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/W/W1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/W_test.jpg"
+          ]
+        },
+        {
+          "sha256": "90e9ca8febb1e1c42ca0787398e542a4c473954f495a6513537979aa307cd724",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/space/space1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/space_test.jpg"
+          ]
+        },
+        {
+          "sha256": "97a3a97aafc005939b01954045addb09cc8b841c312e778eceacacde46e3d771",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/S/S1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/S_test.jpg"
+          ]
+        },
+        {
+          "sha256": "986b0398573f9d9d57f6a123c365d299aab52624389bcf0665dd2ce58b93b68f",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/P/P1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/P_test.jpg"
+          ]
+        },
+        {
+          "sha256": "b43c3a938198abf52efc577125159fbae419557ccc4de065cdf919db4c4943d0",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/X/X1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/X_test.jpg"
+          ]
+        },
+        {
+          "sha256": "b4b8c4dc3309c7a354887b176dc05eea208a25e64a4c8e8b8ead5572ca871714",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/M/M1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/M_test.jpg"
+          ]
+        },
+        {
+          "sha256": "d1c5a7ef0df2d020b627b0c717ae7d39fa24959492e39a34ae2c76e42e53e27a",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/D/D1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/D_test.jpg"
+          ]
+        },
+        {
+          "sha256": "d7dea76d544dfa4c7ab4acb5885ecb27b05ebb4353de8297df29e131a6327e65",
+          "left_files": [
+            "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train/G/G1.jpg"
+          ],
+          "right_files": [
+            "raw/asl/alphabet/asl_alphabet_test/asl_alphabet_test/G_test.jpg"
+          ]
+        }
+      ],
+      "examples_truncated": true
+    }
+  },
+  "binus_mirror": {
+    "collected_unique_hash_count": 519,
+    "train_test_unique_hash_count": 514,
+    "missing_from_train_test_hash_count": 5,
+    "extra_in_train_test_hash_count": 0,
+    "missing_from_train_test_files": [
+      "raw/bisindo/alphabet/binus-hand-sign/collectedimages/F/F.760cadbb-e264-11ed-91f3-001a7dda7115.jpg",
+      "raw/bisindo/alphabet/binus-hand-sign/collectedimages/H/H.fd1d8256-e264-11ed-abfe-001a7dda7115.jpg",
+      "raw/bisindo/alphabet/binus-hand-sign/collectedimages/Q/Q.5cf2a85c-e267-11ed-a4f7-001a7dda7115.jpg",
+      "raw/bisindo/alphabet/binus-hand-sign/collectedimages/Q/Q.80c3ecb7-e267-11ed-b887-001a7dda7115.jpg",
+      "raw/bisindo/alphabet/binus-hand-sign/collectedimages/Y/Y.793fbaa6-e269-11ed-94d6-001a7dda7115.jpg"
+    ]
+  },
+  "derived_groups": {
+    "bisindo_um_filename_base": {
+      "grouping_rule": "remove a terminal _2, _3, or _AR from the filename stem",
+      "group_count": 5200,
+      "group_size_distribution": {
+        "1": 3920,
+        "2": 500,
+        "4": 780
+      }
+    }
+  },
+  "cross_collection_duplicates": {
+    "group_count": 0,
+    "files_in_duplicate_groups": 0,
+    "examples": [],
+    "examples_truncated": false
+  }
+}

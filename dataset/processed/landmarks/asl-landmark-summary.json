@@ -1,0 +1,730 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-26T13:11:57.282582+00:00",
+  "mode": "ASL",
+  "feature_version": "hand-pose-v2",
+  "feature_count": 132,
+  "generation_key": "bc2039da893cabbccc6f5e692f7b748c62b2c91aae68ca8231379ac08c95db0b",
+  "manifest_sha256": "2b6e9caf05a97739b21e374af4a6418de950a42f9e7b7dd9b4e7d70a719b8e88",
+  "model_sha256": "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1",
+  "detector_profile": {
+    "primary": {
+      "num_hands": 2,
+      "min_hand_detection_confidence": 0.35,
+      "min_hand_presence_confidence": 0.35,
+      "min_tracking_confidence": 0.5
+    },
+    "fallback": {
+      "num_hands": 2,
+      "min_hand_detection_confidence": 0.2,
+      "min_hand_presence_confidence": 0.2,
+      "min_tracking_confidence": 0.5
+    },
+    "padding_fallback": {
+      "ratio": 0.5,
+      "detector": "fallback"
+    }
+  },
+  "recovery_policy": {
+    "multimodal_xml_crop_margin": 1.0,
+    "prefer_crop_when_expected_hands_detected": true,
+    "retain_partial_two_hand_features": true
+  },
+  "sample_count": 70146,
+  "usable_count": 62473,
+  "coverage": 0.890614,
+  "reason_counts": {
+    "no_hands_detected": 7115,
+    "no_hands_expected": 558,
+    "ok": 62473
+  },
+  "strategy_counts": {
+    "full_frame": 64094,
+    "padding_fallback_050_020": 3781,
+    "threshold_fallback_020": 2271
+  },
+  "complete_detection_count": 62473,
+  "partial_detection_count": 0,
+  "hard_negative_count": 0,
+  "by_split": {
+    "test": {
+      "total": 10088,
+      "usable": 4940,
+      "coverage": 0.489691
+    },
+    "train": {
+      "total": 50000,
+      "usable": 47900,
+      "coverage": 0.958
+    },
+    "val": {
+      "total": 10058,
+      "usable": 9633,
+      "coverage": 0.957745
+    }
+  },
+  "by_source": {
+    "asl_alphabet_v1": {
+      "total": 70146,
+      "usable": 62473,
+      "coverage": 0.890614
+    }
+  },
+  "by_label": {
+    "A": {
+      "total": 2800,
+      "usable": 2311,
+      "coverage": 0.825357
+    },
+    "B": {
+      "total": 2789,
+      "usable": 2203,
+      "coverage": 0.789889
+    },
+    "C": {
+      "total": 2800,
+      "usable": 2658,
+      "coverage": 0.949286
+    },
+    "D": {
+      "total": 2800,
+      "usable": 2689,
+      "coverage": 0.960357
+    },
+    "E": {
+      "total": 2800,
+      "usable": 2320,
+      "coverage": 0.828571
+    },
+    "F": {
+      "total": 2800,
+      "usable": 2772,
+      "coverage": 0.99
+    },
+    "G": {
+      "total": 2800,
+      "usable": 2573,
+      "coverage": 0.918929
+    },
+    "H": {
+      "total": 2800,
+      "usable": 2555,
+      "coverage": 0.9125
+    },
+    "I": {
+      "total": 2800,
+      "usable": 2497,
+      "coverage": 0.891786
+    },
+    "K": {
+      "total": 2800,
+      "usable": 2721,
+      "coverage": 0.971786
+    },
+    "L": {
+      "total": 2799,
+      "usable": 2651,
+      "coverage": 0.947124
+    },
+    "M": {
+      "total": 2800,
+      "usable": 2309,
+      "coverage": 0.824643
+    },
+    "N": {
+      "total": 2800,
+      "usable": 2019,
+      "coverage": 0.721071
+    },
+    "O": {
+      "total": 2800,
+      "usable": 2675,
+      "coverage": 0.955357
+    },
+    "P": {
+      "total": 2800,
+      "usable": 2451,
+      "coverage": 0.875357
+    },
+    "Q": {
+      "total": 2800,
+      "usable": 2447,
+      "coverage": 0.873929
+    },
+    "R": {
+      "total": 2800,
+      "usable": 2646,
+      "coverage": 0.945
+    },
+    "S": {
+      "total": 2800,
+      "usable": 2713,
+      "coverage": 0.968929
+    },
+    "T": {
+      "total": 2800,
+      "usable": 2476,
+      "coverage": 0.884286
+    },
+    "U": {
+      "total": 2800,
+      "usable": 2513,
+      "coverage": 0.8975
+    },
+    "UNKNOWN": {
+      "total": 2958,
+      "usable": 2101,
+      "coverage": 0.710277
+    },
+    "V": {
+      "total": 2800,
+      "usable": 2561,
+      "coverage": 0.914643
+    },
+    "W": {
+      "total": 2800,
+      "usable": 2553,
+      "coverage": 0.911786
+    },
+    "X": {
+      "total": 2800,
+      "usable": 2475,
+      "coverage": 0.883929
+    },
+    "Y": {
+      "total": 2800,
+      "usable": 2584,
+      "coverage": 0.922857
+    }
+  },
+  "by_original_label": {
+    "A": {
+      "total": 2800,
+      "usable": 2311,
+      "coverage": 0.825357
+    },
+    "B": {
+      "total": 2789,
+      "usable": 2203,
+      "coverage": 0.789889
+    },
+    "C": {
+      "total": 2800,
+      "usable": 2658,
+      "coverage": 0.949286
+    },
+    "D": {
+      "total": 2800,
+      "usable": 2689,
+      "coverage": 0.960357
+    },
+    "E": {
+      "total": 2800,
+      "usable": 2320,
+      "coverage": 0.828571
+    },
+    "F": {
+      "total": 2800,
+      "usable": 2772,
+      "coverage": 0.99
+    },
+    "G": {
+      "total": 2800,
+      "usable": 2573,
+      "coverage": 0.918929
+    },
+    "H": {
+      "total": 2800,
+      "usable": 2555,
+      "coverage": 0.9125
+    },
+    "I": {
+      "total": 2800,
+      "usable": 2497,
+      "coverage": 0.891786
+    },
+    "J": {
+      "total": 600,
+      "usable": 525,
+      "coverage": 0.875
+    },
+    "K": {
+      "total": 2800,
+      "usable": 2721,
+      "coverage": 0.971786
+    },
+    "L": {
+      "total": 2799,
+      "usable": 2651,
+      "coverage": 0.947124
+    },
+    "M": {
+      "total": 2800,
+      "usable": 2309,
+      "coverage": 0.824643
+    },
+    "N": {
+      "total": 2800,
+      "usable": 2019,
+      "coverage": 0.721071
+    },
+    "O": {
+      "total": 2800,
+      "usable": 2675,
+      "coverage": 0.955357
+    },
+    "P": {
+      "total": 2800,
+      "usable": 2451,
+      "coverage": 0.875357
+    },
+    "Q": {
+      "total": 2800,
+      "usable": 2447,
+      "coverage": 0.873929
+    },
+    "R": {
+      "total": 2800,
+      "usable": 2646,
+      "coverage": 0.945
+    },
+    "S": {
+      "total": 2800,
+      "usable": 2713,
+      "coverage": 0.968929
+    },
+    "T": {
+      "total": 2800,
+      "usable": 2476,
+      "coverage": 0.884286
+    },
+    "U": {
+      "total": 2800,
+      "usable": 2513,
+      "coverage": 0.8975
+    },
+    "V": {
+      "total": 2800,
+      "usable": 2561,
+      "coverage": 0.914643
+    },
+    "W": {
+      "total": 2800,
+      "usable": 2553,
+      "coverage": 0.911786
+    },
+    "X": {
+      "total": 2800,
+      "usable": 2475,
+      "coverage": 0.883929
+    },
+    "Y": {
+      "total": 2800,
+      "usable": 2584,
+      "coverage": 0.922857
+    },
+    "Z": {
+      "total": 600,
+      "usable": 506,
+      "coverage": 0.843333
+    },
+    "del": {
+      "total": 600,
+      "usable": 543,
+      "coverage": 0.905
+    },
+    "nothing": {
+      "total": 558,
+      "usable": 0,
+      "coverage": 0.0
+    },
+    "space": {
+      "total": 600,
+      "usable": 527,
+      "coverage": 0.878333
+    }
+  },
+  "by_split_label": {
+    "test": {
+      "A": {
+        "total": 400,
+        "usable": 155,
+        "coverage": 0.3875
+      },
+      "B": {
+        "total": 389,
+        "usable": 64,
+        "coverage": 0.164524
+      },
+      "C": {
+        "total": 400,
+        "usable": 289,
+        "coverage": 0.7225
+      },
+      "D": {
+        "total": 400,
+        "usable": 291,
+        "coverage": 0.7275
+      },
+      "E": {
+        "total": 400,
+        "usable": 136,
+        "coverage": 0.34
+      },
+      "F": {
+        "total": 400,
+        "usable": 400,
+        "coverage": 1.0
+      },
+      "G": {
+        "total": 400,
+        "usable": 233,
+        "coverage": 0.5825
+      },
+      "H": {
+        "total": 400,
+        "usable": 179,
+        "coverage": 0.4475
+      },
+      "I": {
+        "total": 400,
+        "usable": 114,
+        "coverage": 0.285
+      },
+      "K": {
+        "total": 400,
+        "usable": 321,
+        "coverage": 0.8025
+      },
+      "L": {
+        "total": 399,
+        "usable": 251,
+        "coverage": 0.629073
+      },
+      "M": {
+        "total": 400,
+        "usable": 111,
+        "coverage": 0.2775
+      },
+      "N": {
+        "total": 400,
+        "usable": 91,
+        "coverage": 0.2275
+      },
+      "O": {
+        "total": 400,
+        "usable": 333,
+        "coverage": 0.8325
+      },
+      "P": {
+        "total": 400,
+        "usable": 150,
+        "coverage": 0.375
+      },
+      "Q": {
+        "total": 400,
+        "usable": 146,
+        "coverage": 0.365
+      },
+      "R": {
+        "total": 400,
+        "usable": 257,
+        "coverage": 0.6425
+      },
+      "S": {
+        "total": 400,
+        "usable": 313,
+        "coverage": 0.7825
+      },
+      "T": {
+        "total": 400,
+        "usable": 76,
+        "coverage": 0.19
+      },
+      "U": {
+        "total": 400,
+        "usable": 170,
+        "coverage": 0.425
+      },
+      "UNKNOWN": {
+        "total": 500,
+        "usable": 112,
+        "coverage": 0.224
+      },
+      "V": {
+        "total": 400,
+        "usable": 256,
+        "coverage": 0.64
+      },
+      "W": {
+        "total": 400,
+        "usable": 233,
+        "coverage": 0.5825
+      },
+      "X": {
+        "total": 400,
+        "usable": 75,
+        "coverage": 0.1875
+      },
+      "Y": {
+        "total": 400,
+        "usable": 184,
+        "coverage": 0.46
+      }
+    },
+    "train": {
+      "A": {
+        "total": 2000,
+        "usable": 1756,
+        "coverage": 0.878
+      },
+      "B": {
+        "total": 2000,
+        "usable": 1740,
+        "coverage": 0.87
+      },
+      "C": {
+        "total": 2000,
+        "usable": 1980,
+        "coverage": 0.99
+      },
+      "D": {
+        "total": 2000,
+        "usable": 2000,
+        "coverage": 1.0
+      },
+      "E": {
+        "total": 2000,
+        "usable": 1784,
+        "coverage": 0.892
+      },
+      "F": {
+        "total": 2000,
+        "usable": 1973,
+        "coverage": 0.9865
+      },
+      "G": {
+        "total": 2000,
+        "usable": 1942,
+        "coverage": 0.971
+      },
+      "H": {
+        "total": 2000,
+        "usable": 1996,
+        "coverage": 0.998
+      },
+      "I": {
+        "total": 2000,
+        "usable": 1996,
+        "coverage": 0.998
+      },
+      "K": {
+        "total": 2000,
+        "usable": 2000,
+        "coverage": 1.0
+      },
+      "L": {
+        "total": 2000,
+        "usable": 2000,
+        "coverage": 1.0
+      },
+      "M": {
+        "total": 2000,
+        "usable": 1802,
+        "coverage": 0.901
+      },
+      "N": {
+        "total": 2000,
+        "usable": 1619,
+        "coverage": 0.8095
+      },
+      "O": {
+        "total": 2000,
+        "usable": 1996,
+        "coverage": 0.998
+      },
+      "P": {
+        "total": 2000,
+        "usable": 1950,
+        "coverage": 0.975
+      },
+      "Q": {
+        "total": 2000,
+        "usable": 1996,
+        "coverage": 0.998
+      },
+      "R": {
+        "total": 2000,
+        "usable": 1990,
+        "coverage": 0.995
+      },
+      "S": {
+        "total": 2000,
+        "usable": 2000,
+        "coverage": 1.0
+      },
+      "T": {
+        "total": 2000,
+        "usable": 2000,
+        "coverage": 1.0
+      },
+      "U": {
+        "total": 2000,
+        "usable": 1943,
+        "coverage": 0.9715
+      },
+      "UNKNOWN": {
+        "total": 2000,
+        "usable": 1591,
+        "coverage": 0.7955
+      },
+      "V": {
+        "total": 2000,
+        "usable": 1905,
+        "coverage": 0.9525
+      },
+      "W": {
+        "total": 2000,
+        "usable": 1941,
+        "coverage": 0.9705
+      },
+      "X": {
+        "total": 2000,
+        "usable": 2000,
+        "coverage": 1.0
+      },
+      "Y": {
+        "total": 2000,
+        "usable": 2000,
+        "coverage": 1.0
+      }
+    },
+    "val": {
+      "A": {
+        "total": 400,
+        "usable": 400,
+        "coverage": 1.0
+      },
+      "B": {
+        "total": 400,
+        "usable": 399,
+        "coverage": 0.9975
+      },
+      "C": {
+        "total": 400,
+        "usable": 389,
+        "coverage": 0.9725
+      },
+      "D": {
+        "total": 400,
+        "usable": 398,
+        "coverage": 0.995
+      },
+      "E": {
+        "total": 400,
+        "usable": 400,
+        "coverage": 1.0
+      },
+      "F": {
+        "total": 400,
+        "usable": 399,
+        "coverage": 0.9975
+      },
+      "G": {
+        "total": 400,
+        "usable": 398,
+        "coverage": 0.995
+      },
+      "H": {
+        "total": 400,
+        "usable": 380,
+        "coverage": 0.95
+      },
+      "I": {
+        "total": 400,
+        "usable": 387,
+        "coverage": 0.9675
+      },
+      "K": {
+        "total": 400,
+        "usable": 400,
+        "coverage": 1.0
+      },
+      "L": {
+        "total": 400,
+        "usable": 400,
+        "coverage": 1.0
+      },
+      "M": {
+        "total": 400,
+        "usable": 396,
+        "coverage": 0.99
+      },
+      "N": {
+        "total": 400,
+        "usable": 309,
+        "coverage": 0.7725
+      },
+      "O": {
+        "total": 400,
+        "usable": 346,
+        "coverage": 0.865
+      },
+      "P": {
+        "total": 400,
+        "usable": 351,
+        "coverage": 0.8775
+      },
+      "Q": {
+        "total": 400,
+        "usable": 305,
+        "coverage": 0.7625
+      },
+      "R": {
+        "total": 400,
+        "usable": 399,
+        "coverage": 0.9975
+      },
+      "S": {
+        "total": 400,
+        "usable": 400,
+        "coverage": 1.0
+      },
+      "T": {
+        "total": 400,
+        "usable": 400,
+        "coverage": 1.0
+      },
+      "U": {
+        "total": 400,
+        "usable": 400,
+        "coverage": 1.0
+      },
+      "UNKNOWN": {
+        "total": 458,
+        "usable": 398,
+        "coverage": 0.868996
+      },
+      "V": {
+        "total": 400,
+        "usable": 400,
+        "coverage": 1.0
+      },
+      "W": {
+        "total": 400,
+        "usable": 379,
+        "coverage": 0.9475
+      },
+      "X": {
+        "total": 400,
+        "usable": 400,
+        "coverage": 1.0
+      },
+      "Y": {
+        "total": 400,
+        "usable": 400,
+        "coverage": 1.0
+      }
+    }
+  }
+}

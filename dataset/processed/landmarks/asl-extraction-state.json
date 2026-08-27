@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "updated_at": "2026-08-26T13:11:57.473588+00:00",
+  "mode": "ASL",
+  "feature_version": "hand-pose-v2",
+  "feature_count": 132,
+  "generation_key": "bc2039da893cabbccc6f5e692f7b748c62b2c91aae68ca8231379ac08c95db0b",
+  "manifest_path": "dataset/manifests/asl-static.csv",
+  "manifest_sha256": "2b6e9caf05a97739b21e374af4a6418de950a42f9e7b7dd9b4e7d70a719b8e88",
+  "model_path": "models/mediapipe/hand_landmarker.task",
+  "model_sha256": "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1",
+  "detector_profile": {
+    "primary": {
+      "num_hands": 2,
+      "min_hand_detection_confidence": 0.35,
+      "min_hand_presence_confidence": 0.35,
+      "min_tracking_confidence": 0.5
+    },
+    "fallback": {
+      "num_hands": 2,
+      "min_hand_detection_confidence": 0.2,
+      "min_hand_presence_confidence": 0.2,
+      "min_tracking_confidence": 0.5
+    },
+    "padding_fallback": {
+      "ratio": 0.5,
+      "detector": "fallback"
+    }
+  },
+  "recovery_policy": {
+    "multimodal_xml_crop_margin": 1.0,
+    "prefer_crop_when_expected_hands_detected": true,
+    "retain_partial_two_hand_features": true
+  }
+}

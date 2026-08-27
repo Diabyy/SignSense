@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "generated_on": "2026-08-24",
+  "project": "SignSense",
+  "scope": "Static alphabet recognition for BISINDO and ASL",
+  "sources": [
+    {
+      "id": "multimodal_bisindo_v2",
+      "name": "A Multimodal BISINDO Corpus: Annotated Images and Videos for Indonesian Sign Language Hand Gesture Recognition",
+      "creators": [
+        "Lilis Nur Hayati",
+        "Anik Nur Handayani",
+        "Wahyu Sakti Gunawan Irianto",
+        "Rosa Andrie Asmara",
+        "Dolly Indra"
+      ],
+      "language": "BISINDO",
+      "version": 2,
+      "doi": "10.17632/235c78xbmk.2",
+      "page_url": "https://data.mendeley.com/datasets/235c78xbmk/2",
+      "download_url": "https://data.mendeley.com/public-api/zip/235c78xbmk/download/2",
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "archive": {
+        "path": ".downloads/multimodal-bisindo-v2.zip",
+        "bytes": 1908855940,
+        "sha256": "982e294bece315fe0b184cb3849df62b799f4eb050fb76fea4bbfbad83e45795"
+      },
+      "canonical_root": "raw/bisindo/alphabet/multimodal-bisindo-v2/A Multimodal BISINDO Corpus Annotated Images and V",
+      "audit": {
+        "train_images": 17777,
+        "test_images": 1976,
+        "videos": 8,
+        "invalid_images": 0,
+        "exact_train_test_overlap": 0,
+        "train_images_without_matching_xml": 7,
+        "orphan_train_xml": 7,
+        "multi_object_train_images": 2
+      },
+      "usage_notes": [
+        "Use XML object labels and bounding boxes; do not assume every folder is a pure single-label classification source.",
+        "Exclude unmatched image/XML pairs when training an object detector.",
+        "The published images are primarily frames from recording sequences, so avoid random per-frame splitting.",
+        "The public videos contain one anonymized actor; the provided test split is not evidence of signer-independent generalization."
+      ]
+    },
+    {
+      "id": "bisindo_um_v1",
+      "name": "BISINDO DATASET",
+      "creators": [
+        "Arya Raden",
+        "Muhammad Asshafi"
+      ],
+      "language": "BISINDO",
+      "version": 1,
+      "doi": "10.17632/4xnkvr88tk.1",
+      "page_url": "https://data.mendeley.com/datasets/4xnkvr88tk/1",
+      "download_url": "https://data.mendeley.com/public-api/zip/4xnkvr88tk/download/1",
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "archive": {
+        "path": ".downloads/bisindo-um-v1.zip",
+        "bytes": 834628760,
+        "sha256": "da4d83e3d9a577fef6c4f5fba33315257ecedc613ad4f151c39e6fbd70d9e804"
+      },
+      "canonical_root": "raw/bisindo/alphabet/bisindo-um-v1/BISINDO DATASET/Mendeley BISINDO",
+      "audit": {
+        "images": 8040,
+        "classes": 26,
+        "invalid_images": 0,
+        "exact_duplicates": 0,
+        "filename_base_groups": 5200,
+        "filename_group_size_distribution": {
+          "1": 3920,
+          "2": 500,
+          "4": 780
+        }
+      },
+      "usage_notes": [
+        "When a filename base has original, _2, _3, or _AR variants, keep every available variant in the same split.",
+        "Filename-derived groups are not confirmed signer identities; 3920 groups have only one file, 500 have two, and 780 have four.",
+        "The dataset has no published train/test partition; create grouped splits rather than random image splits."
+      ]
+    },
+    {
+      "id": "binus_hand_sign",
+      "name": "BISINDO Hand-Sign Detection Using Transfer Learning",
+      "creators": [
+        "David Joan",
+        "Vincent Vincent",
+        "Kevin Jason Daniel",
+        "Said Achmad",
+        "Rhio Sutoyo"
+      ],
+      "language": "BISINDO",
+      "repository_url": "https://github.com/Zappie733/Research-Binus-BISINDO-DATASET",
+      "publication_doi": "10.1109/ICRAIE59459.2023.10468194",
+      "commit": "78c616244ad4def9e355d31d30b1a04d4ab63946",
+      "license": {
+        "spdx": "MIT",
+        "path": "licenses/MIT-BINUS.txt"
+      },
+      "canonical_root": "raw/bisindo/alphabet/binus-hand-sign/collectedimages",
+      "audit": {
+        "images": 520,
+        "classes": 26,
+        "images_per_class": 20,
+        "invalid_images": 0,
+        "unique_sha256": 519,
+        "redundant_exact_duplicates": 1
+      },
+      "usage_notes": [
+        "Use collectedimages as the canonical source; train and test are derived mirrors, not additional samples.",
+        "The repository train/test mirrors omit five unique collected images and duplicate five other images.",
+        "Create a new grouped or source-aware split after removing exact duplicates."
+      ]
+    },
+    {
+      "id": "asl_alphabet_v1",
+      "name": "ASL Alphabet",
+      "creators": [
+        "Akash Nagaraj"
+      ],
+      "language": "ASL",
+      "version": 1,
+      "kaggle_ref": "grassknoted/asl-alphabet",
+      "dataset_doi": "10.34740/KAGGLE/DSV/29550",
+      "page_url": "https://www.kaggle.com/datasets/grassknoted/asl-alphabet",
+      "api_reported_bytes": 1106471482,
+      "license": {
+        "spdx": "GPL-2.0-only",
+        "source_label": "GPL 2",
+        "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+      },
+      "acquisition": {
+        "tool": "kagglehub",
+        "tool_version": "1.0.2"
+      },
+      "canonical_root": "raw/asl/alphabet/asl_alphabet_train/asl_alphabet_train",
+      "audit": {
+        "train_images": 87000,
+        "train_classes": 29,
+        "images_per_train_class": 3000,
+        "test_images": 28,
+        "invalid_images": 0,
+        "exact_test_images_also_in_train": 28
+      },
+      "usage_notes": [
+        "Do not use the bundled test directory for evaluation; every test image is an exact copy of a training image.",
+        "For the static alphabet MVP, exclude dynamic J and Z and map nothing to UNKNOWN/no-sign.",
+        "Treat del and space as optional control gestures, not alphabet output classes.",
+        "Use dataset/local-validation or a separately collected signer-independent set for final evaluation."
+      ]
+    },
+    {
+      "id": "animated_bisindo_reference_v1",
+      "name": "Animated BISINDO Alphabet",
+      "language": "BISINDO",
+      "version": 1,
+      "kaggle_ref": "rayramadita/bisindo-alphabet",
+      "page_url": "https://www.kaggle.com/datasets/rayramadita/bisindo-alphabet",
+      "api_reported_bytes": 14198090,
+      "license": {
+        "spdx": "MIT",
+        "source_label": "MIT"
+      },
+      "acquisition": {
+        "tool": "kagglehub",
+        "tool_version": "1.0.2"
+      },
+      "canonical_root": "raw/bisindo/reference/animated-bisindo",
+      "audit": {
+        "alphabet_webp_files": 26,
+        "phrase_webp_files": 14
+      },
+      "training_eligible": false,
+      "usage_notes": [
+        "Reference-only source used to inspect motion and endpoint poses.",
+        "Do not include these frames in training, validation, or test metrics.",
+        "The source does not document linguistic validation or regional BISINDO variety."
+      ]
+    }
+  ],
+  "global_audit": {
+    "invalid_images": 0,
+    "cross_collection_exact_duplicate_groups": 0,
+    "details": "dataset/manifests/dataset-audit.json"
+  }
+}
