@@ -58,5 +58,6 @@ describe("public deployment controls", () => {
     expect(vercelIgnore).toContain("/tests/");
     expect(vercelIgnore).toContain("/Website/node_modules/");
     expect(vercelIgnore).not.toContain("/Website/tests/");
+    expect(vercelIgnore).not.toContain("parity-fixture.json");
   });
 });

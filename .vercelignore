@@ -13,7 +13,6 @@
 
 /models/**/*.joblib
 /models/**/training-report.json
-/models/asl/parity-fixture.json
 
 /Website/dist/
 /Website/node_modules/
