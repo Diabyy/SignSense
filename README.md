@@ -2,6 +2,8 @@
 
 SignSense adalah prototype akademik pengenalan alfabet statis BISINDO dan ASL dari webcam. Inferensi landmark dan classifier berjalan di browser. Proyek ini bukan penerjemah bahasa isyarat, alat aksesibilitas tersertifikasi, atau pengganti instruktur/penutur bahasa isyarat.
 
+Demo sementara: https://signsense-delta.vercel.app
+
 ## Status
 
 - BISINDO: 23 pose statis; `J`, `R`, dan `Z` ditunda karena membutuhkan gerakan.
