@@ -81,4 +81,4 @@ Khusus ASL Alphabet, sumber mencantumkan `GPL-2.0-only`. Reference images adalah
 
 ## Academic Use
 
-Repository dan deployment ini disiapkan untuk demonstrasi dan penilaian akademik. Hasil prediksi dapat salah, termasuk ketika confidence model terlihat tinggi. Jangan menggunakannya untuk keputusan penting atau klaim kefasihan bahasa isyarat.
+Repository dan deployment ini disiapkan untuk demonstrasi dan penilaian. Hasil prediksi dapat salah, termasuk ketika confidence model terlihat tinggi. Jangan menggunakannya untuk keputusan penting atau klaim kefasihan bahasa isyarat.
