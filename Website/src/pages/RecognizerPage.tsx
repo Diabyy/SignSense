@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { CameraStage } from "../components/CameraStage";
-import { isSignMode } from "../data/alphabet";
+import { getLetter, isSignMode, referenceAssetUrl } from "../data/alphabet";
 import { useSignInference } from "../hooks/useSignInference";
 import { MODE_CONFIGS, type SignMode } from "../lib/modes";
 
@@ -18,16 +18,77 @@ function Recognizer({ mode }: { mode: SignMode }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [transcript, setTranscript] = useState<string[]>([]);
+  const [showSkeleton, setShowSkeleton] = useState(true);
+  const [copied, setCopied] = useState(false);
+  const [practiceActive, setPracticeActive] = useState(false);
+  const [targetIndex, setTargetIndex] = useState(0);
+  const [holdProgress, setHoldProgress] = useState(0);
+  const [completedCount, setCompletedCount] = useState(0);
+  const [showSuccess, setShowSuccess] = useState(false);
+
   const { status, error, snapshot, startCamera, stopCamera } = useSignInference(
     videoRef,
     canvasRef,
     config,
-    (label) => setTranscript((current) => [...current.slice(-7), label]),
+    (label) => setTranscript((current) => [...current.slice(-15), label]),
+    showSkeleton,
   );
 
   useEffect(() => {
     setTranscript([]);
+    setHoldProgress(0);
+    setShowSuccess(false);
   }, [mode]);
+
+  const targetLetter = config.staticLetters[targetIndex % config.staticLetters.length] ?? "A";
+  const targetEntry = getLetter(mode, targetLetter);
+
+  useEffect(() => {
+    if (!practiceActive || status !== "running" || showSuccess) {
+      if (!showSuccess) setHoldProgress(0);
+      return;
+    }
+
+    if (snapshot.stableLabel === targetLetter && snapshot.stableConfidence >= 0.7) {
+      setHoldProgress((prev) => {
+        const next = prev + 10;
+        if (next >= 100) {
+          setShowSuccess(true);
+          setCompletedCount((c) => c + 1);
+          setTimeout(() => {
+            setShowSuccess(false);
+            setTargetIndex((idx) => (idx + 1) % config.staticLetters.length);
+            setHoldProgress(0);
+          }, 800);
+          return 100;
+        }
+        return next;
+      });
+    } else if (snapshot.stableLabel !== targetLetter) {
+      setHoldProgress((prev) => Math.max(0, prev - 25));
+    }
+  }, [
+    practiceActive,
+    status,
+    snapshot.stableLabel,
+    snapshot.stableConfidence,
+    targetLetter,
+    config.staticLetters.length,
+    showSuccess,
+  ]);
+
+  const handleCopyTranscript = () => {
+    if (transcript.length === 0) return;
+    navigator.clipboard.writeText(transcript.join(" "));
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleRandomTarget = () => {
+    const nextIdx = Math.floor(Math.random() * config.staticLetters.length);
+    setTargetIndex(nextIdx);
+    setHoldProgress(0);
+  };
 
   const statusLabel =
     status === "running"
@@ -89,6 +150,8 @@ function Recognizer({ mode }: { mode: SignMode }) {
               modeLabel={config.label}
               onStart={startCamera}
               onStop={stopCamera}
+              onToggleSkeleton={() => setShowSkeleton((prev) => !prev)}
+              showSkeleton={showSkeleton}
               snapshot={snapshot}
               status={status}
               videoRef={videoRef}
@@ -114,8 +177,98 @@ function Recognizer({ mode }: { mode: SignMode }) {
               <div><dt>Huruf dinamis</dt><dd>{config.dynamicLetters.join(" / ")} ditunda</dd></div>
             </dl>
             <div className="transcript-line">
-              <span>Riwayat stabil</span>
+              <div className="transcript-header">
+                <span>Riwayat stabil</span>
+                {transcript.length > 0 && (
+                  <div className="transcript-actions">
+                    <button
+                      className="transcript-action-btn"
+                      onClick={handleCopyTranscript}
+                      title="Salin transkrip ke clipboard"
+                      type="button"
+                    >
+                      {copied ? "Tersalin ✓" : "Salin"}
+                    </button>
+                    <button
+                      className="transcript-action-btn danger"
+                      onClick={() => setTranscript([])}
+                      title="Hapus riwayat"
+                      type="button"
+                    >
+                      Hapus
+                    </button>
+                  </div>
+                )}
+              </div>
               <strong>{transcript.length ? transcript.join(" ") : "Belum ada"}</strong>
+            </div>
+
+            <div className="practice-section">
+              <div className="practice-topline">
+                <span className="practice-title">
+                  <i /> Mode Tantangan Huruf
+                </span>
+                <button
+                  className={`chip-button ${practiceActive ? "is-active" : ""}`}
+                  onClick={() => setPracticeActive((prev) => !prev)}
+                  type="button"
+                >
+                  {practiceActive ? "Aktif" : "Mulai"}
+                </button>
+              </div>
+
+              {practiceActive && (
+                <>
+                  <div className="practice-content">
+                    {targetEntry && (
+                      <img
+                        alt={targetEntry.altText}
+                        className="practice-thumbnail"
+                        src={referenceAssetUrl(targetEntry)}
+                      />
+                    )}
+                    <div className="practice-target-details">
+                      <div className="practice-target-row">
+                        <span className="practice-target-letter">{targetLetter}</span>
+                        <span className="practice-target-badge">
+                          {targetEntry?.expectedHands ?? 1} tangan
+                        </span>
+                        <span className="practice-score">Tercapai: {completedCount}</span>
+                      </div>
+                      <span className="practice-target-hint">
+                        {showSuccess
+                          ? "Hebat! Pose stabil tercapai ✓"
+                          : `Peragakan pose huruf ${targetLetter} dan tahan posisi`}
+                      </span>
+                      <div className="practice-progress-bar">
+                        <div
+                          className={`practice-progress-fill ${showSuccess ? "success" : ""}`}
+                          style={{ width: `${holdProgress}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="practice-actions">
+                    <button
+                      className="transcript-action-btn"
+                      onClick={handleRandomTarget}
+                      type="button"
+                    >
+                      Huruf Acak
+                    </button>
+                    <button
+                      className="transcript-action-btn"
+                      onClick={() => {
+                        setTargetIndex((idx) => (idx + 1) % config.staticLetters.length);
+                        setHoldProgress(0);
+                      }}
+                      type="button"
+                    >
+                      Lewati
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </article>
         </section>
@@ -132,7 +285,6 @@ function Recognizer({ mode }: { mode: SignMode }) {
             <p>UNKNOWN berarti model belum cukup yakin atau jumlah tangan tidak cocok.</p>
           </article>
         </section>
-
       </main>
 
       <aside className="camera-privacy-note">

@@ -1574,6 +1574,31 @@ summary:focus-visible {
   letter-spacing: 0.09em;
 }
 
+.camera-topline-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.chip-button {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.chip-button:hover,
+.chip-button.is-active {
+  border-color: var(--lime);
+  color: var(--lime);
+}
+
 .local-chip {
   display: inline-flex;
   align-items: center;
@@ -1910,6 +1935,41 @@ summary:focus-visible {
   border-top: 1px solid var(--line);
 }
 
+.transcript-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.transcript-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.transcript-action-btn {
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.6rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: all 0.15s ease;
+}
+
+.transcript-action-btn:hover {
+  color: var(--paper);
+  border-color: var(--lime);
+}
+
+.transcript-action-btn.danger:hover {
+  color: var(--coral);
+  border-color: var(--coral);
+}
+
 .transcript-line span {
   color: var(--muted);
   font-size: 0.6rem;
@@ -1924,6 +1984,113 @@ summary:focus-visible {
   font-size: 0.9rem;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.practice-section {
+  margin-top: 1.25rem;
+  padding: 1.1rem;
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.practice-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.practice-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  color: var(--lime);
+  font-family: Bahnschrift, Consolas, monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.practice-score {
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-family: Bahnschrift, Consolas, monospace;
+}
+
+.practice-content {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.practice-thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  object-fit: cover;
+  background: #000;
+}
+
+.practice-target-details {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.practice-target-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.practice-target-letter {
+  font-family: Bahnschrift, "Arial Narrow", sans-serif;
+  font-size: 2.2rem;
+  color: #fff;
+  line-height: 1;
+}
+
+.practice-target-badge {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+
+.practice-target-hint {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.practice-progress-bar {
+  position: relative;
+  height: 8px;
+  background: var(--surface);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  margin-top: 0.2rem;
+}
+
+.practice-progress-fill {
+  height: 100%;
+  background: var(--lime);
+  transition: width 0.08s linear;
+}
+
+.practice-progress-fill.success {
+  background: #50e3c2;
+}
+
+.practice-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 .info-grid {

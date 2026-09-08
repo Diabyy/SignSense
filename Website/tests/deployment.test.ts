@@ -41,6 +41,7 @@ describe("public deployment controls", () => {
   });
 
   it("ships license texts and prevents temporary demo indexing", () => {
+    expect(existsSync(resolve("public", "favicon.svg"))).toBe(true);
     expect(existsSync(resolve("public", "licenses", "GPL-2.0-only.txt"))).toBe(true);
     expect(existsSync(resolve("public", "licenses", "Apache-2.0.txt"))).toBe(true);
     expect(existsSync(resolve("public", "licenses", "RUNTIME-NOTICES.txt"))).toBe(true);

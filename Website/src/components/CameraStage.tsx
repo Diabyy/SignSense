@@ -9,6 +9,8 @@ interface CameraStageProps {
   status: InferenceStatus;
   error: string | null;
   snapshot: InferenceSnapshot;
+  showSkeleton?: boolean;
+  onToggleSkeleton?: () => void;
   onStart: () => void;
   onStop: () => void;
 }
@@ -22,6 +24,12 @@ function CameraIcon() {
   );
 }
 
+function isInAppBrowser(): boolean {
+  if (typeof navigator === "undefined" || !navigator.userAgent) return false;
+  const ua = navigator.userAgent;
+  return /FBAN|FBAV|Instagram|Line|Twitter|MicroMessenger|musical_ly|BytedanceWebview/i.test(ua);
+}
+
 export function CameraStage({
   videoRef,
   canvasRef,
@@ -29,29 +37,54 @@ export function CameraStage({
   status,
   error,
   snapshot,
+  showSkeleton = true,
+  onToggleSkeleton,
   onStart,
   onStop,
 }: CameraStageProps) {
   const isRunning = status === "running";
   const isLoading = status === "loading-model" || status === "requesting-camera";
+  const inApp = isInAppBrowser();
   const loadingCopy =
     status === "loading-model" ? `Menyiapkan model ${modeLabel}` : "Meminta akses kamera";
+
+  const guideText =
+    isRunning && snapshot.detectedHands === 0
+      ? "PASTIKAN PERGELANGAN (WRIST) TERLIHAT & BERI JARAK DARI KAMERA"
+      : "POSISIKAN TANGAN DI AREA INI";
 
   return (
     <section className="camera-card" aria-label={`Kamera pengenal ${modeLabel}`}>
       <div className="camera-topline">
         <span className="camera-index">01 / LIVE INPUT</span>
-        <span className="local-chip"><i /> FRAME LOCAL</span>
+        <div className="camera-topline-right">
+          {onToggleSkeleton && (
+            <button
+              type="button"
+              className={`chip-button ${showSkeleton ? "is-active" : ""}`}
+              onClick={onToggleSkeleton}
+              title={showSkeleton ? "Sembunyikan garis skeleton" : "Tampilkan garis skeleton"}
+            >
+              Skeleton: {showSkeleton ? "ON" : "OFF"}
+            </button>
+          )}
+          <span className="local-chip"><i /> FRAME LOCAL</span>
+        </div>
       </div>
+      {inApp && (
+        <div style={{ padding: "0.6rem 1rem", background: "rgb(255 115 92 / 12%)", color: "var(--coral)", fontSize: "0.85rem", borderBottom: "1px solid rgb(255 115 92 / 24%)" }}>
+          Browser in-app terdeteksi. Untuk performa deteksi terbaik, buka link ini di Google Chrome atau Safari.
+        </div>
+      )}
       <div className="camera-viewport">
-        <video ref={videoRef} className="camera-media" muted playsInline />
+        <video ref={videoRef} className="camera-media" autoPlay muted playsInline />
         <canvas ref={canvasRef} className="camera-media camera-overlay" />
         <div className="frame-guide" aria-hidden="true">
           <span className="corner corner-tl" />
           <span className="corner corner-tr" />
           <span className="corner corner-bl" />
           <span className="corner corner-br" />
-          <span className="frame-guide-copy">POSISIKAN TANGAN DI AREA INI</span>
+          <span className="frame-guide-copy">{guideText}</span>
         </div>
 
         {!isRunning && (

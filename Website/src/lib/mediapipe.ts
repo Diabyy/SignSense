@@ -26,14 +26,32 @@ async function createDetector(
   confidence: number,
   runningMode: "IMAGE" | "VIDEO",
 ): Promise<HandLandmarker> {
-  return HandLandmarker.createFromOptions(vision, {
-    baseOptions: { modelAssetPath: handLandmarkerModelUrl },
+  const baseOptions = {
     runningMode,
     numHands: 2,
     minHandDetectionConfidence: confidence,
     minHandPresenceConfidence: confidence,
     minTrackingConfidence: 0.5,
-  });
+  };
+
+  try {
+    return await HandLandmarker.createFromOptions(vision, {
+      ...baseOptions,
+      baseOptions: {
+        modelAssetPath: handLandmarkerModelUrl,
+        delegate: "GPU",
+      },
+    });
+  } catch (gpuError) {
+    console.warn("GPU delegate tidak tersedia pada perangkat ini, beralih ke CPU delegate:", gpuError);
+    return await HandLandmarker.createFromOptions(vision, {
+      ...baseOptions,
+      baseOptions: {
+        modelAssetPath: handLandmarkerModelUrl,
+        delegate: "CPU",
+      },
+    });
+  }
 }
 
 export async function createHandDetectorSet(config: DetectorConfig): Promise<HandDetectorSet> {
@@ -41,23 +59,31 @@ export async function createHandDetectorSet(config: DetectorConfig): Promise<Han
   const vision = await FilesetResolver.forVisionTasks(wasmPath);
   const primary = await createDetector(vision, config.primaryConfidence, "VIDEO");
   let fallback: HandLandmarker | null = null;
-  try {
-    fallback = config.fallbackConfidence
-      ? await createDetector(vision, config.fallbackConfidence, "IMAGE")
-      : null;
-    const padding = config.paddingRatio
-      ? await createDetector(
-          vision,
-          config.paddingConfidence ?? config.primaryConfidence,
-          "IMAGE",
-        )
-      : null;
-    return { primary, fallback, padding, paddingRatio: config.paddingRatio ?? null };
-  } catch (error) {
-    primary.close();
-    fallback?.close();
-    throw error;
+  let padding: HandLandmarker | null = null;
+  let paddingRatio: number | null = null;
+
+  if (config.fallbackConfidence) {
+    try {
+      fallback = await createDetector(vision, config.fallbackConfidence, "IMAGE");
+    } catch (error) {
+      console.warn("Fallback detector tidak dapat diinisialisasi pada perangkat ini:", error);
+    }
   }
+
+  if (config.paddingRatio) {
+    try {
+      padding = await createDetector(
+        vision,
+        config.paddingConfidence ?? config.primaryConfidence,
+        "IMAGE",
+      );
+      paddingRatio = config.paddingRatio;
+    } catch (error) {
+      console.warn("Padding detector tidak dapat diinisialisasi pada perangkat ini:", error);
+    }
+  }
+
+  return { primary, fallback, padding, paddingRatio };
 }
 
 export function closeHandDetectorSet(detectors: HandDetectorSet): void {

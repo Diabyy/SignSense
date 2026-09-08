@@ -52,6 +52,9 @@ function cameraErrorMessage(error: unknown): string {
     if (error.name === "NotReadableError") {
       return "Kamera sedang digunakan aplikasi lain atau tidak dapat dibaca.";
     }
+    if (error.name === "OverconstrainedError") {
+      return "Resolusi kamera tidak didukung oleh perangkat ini.";
+    }
   }
   return error instanceof Error ? error.message : "Terjadi kesalahan saat membuka kamera.";
 }
@@ -61,6 +64,7 @@ export function useSignInference(
   canvasRef: React.RefObject<HTMLCanvasElement | null>,
   mode: SignModeConfig,
   onCommit: (label: string) => void,
+  showSkeleton: boolean = true,
 ) {
   const [status, setStatus] = useState<InferenceStatus>("idle");
   const [error, setError] = useState<string | null>(null);
@@ -76,7 +80,9 @@ export function useSignInference(
   const onCommitRef = useRef(onCommit);
   const smootherRef = useRef(new PredictionSmoother());
   const latchRef = useRef(new TranscriptLatch());
+  const showSkeletonRef = useRef(showSkeleton);
   onCommitRef.current = onCommit;
+  showSkeletonRef.current = showSkeleton;
 
   const cancelFrameLoop = useCallback(() => {
     const video = videoRef.current;
@@ -142,15 +148,22 @@ export function useSignInference(
       const activeClassifier = classifier;
 
       setStatus("requesting-camera");
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: false,
-        video: {
-          facingMode: "user",
-          width: { ideal: 1280 },
-          height: { ideal: 720 },
-          frameRate: { ideal: 30, max: 30 },
-        },
-      });
+      let stream: MediaStream;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          audio: false,
+          video: {
+            facingMode: "user",
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
+          },
+        });
+      } catch {
+        stream = await navigator.mediaDevices.getUserMedia({
+          audio: false,
+          video: { facingMode: "user" },
+        });
+      }
       if (sessionRef.current !== currentSession) {
         stream.getTracks().forEach((track) => track.stop());
         return;
@@ -160,6 +173,15 @@ export function useSignInference(
       streamRef.current = stream;
       video.srcObject = stream;
       await video.play();
+      if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+        await new Promise<void>((resolve) => {
+          const onLoaded = () => {
+            video.removeEventListener("loadeddata", onLoaded);
+            resolve();
+          };
+          video.addEventListener("loadeddata", onLoaded);
+        });
+      }
       if (sessionRef.current !== currentSession) return;
       setStatus("running");
 
@@ -225,13 +247,17 @@ export function useSignInference(
           const stable = smootherRef.current.update(prediction, startedAt);
           const committed = latchRef.current.update(stable, startedAt);
           if (committed) onCommitRef.current(committed);
-          drawHandOverlay(
-            canvas,
-            result,
-            video.videoWidth,
-            video.videoHeight,
-            overlayTransform,
-          );
+          if (showSkeletonRef.current) {
+            drawHandOverlay(
+              canvas,
+              result,
+              video.videoWidth,
+              video.videoHeight,
+              overlayTransform,
+            );
+          } else {
+            clearOverlay(canvas);
+          }
 
           processedFrames += 1;
           const elapsed = startedAt - measuredFrom;
@@ -282,6 +308,12 @@ export function useSignInference(
     stopCamera();
     setError(null);
   }, [mode.id, stopCamera]);
+
+  useEffect(() => {
+    if (!showSkeleton && canvasRef.current) {
+      clearOverlay(canvasRef.current);
+    }
+  }, [showSkeleton, canvasRef]);
 
   useEffect(() => {
     return () => {
