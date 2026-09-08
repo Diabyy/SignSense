@@ -29,6 +29,13 @@ describe("public routes", () => {
     expect(markup).toContain("Belum didukung");
   });
 
+  it("renders the local validation analysis workspace", () => {
+    const markup = renderRoute("/validasi");
+
+    expect(markup).toContain("Analisis validasi multi-signer");
+    expect(markup).toContain("File diproses lokal di browser");
+  });
+
   it.each([
     ["/panduan", "Bantu kamera melihat tangan, bukan menebak."],
     ["/tentang", "Eksperimen pembelajaran, bukan penerjemah bahasa."],

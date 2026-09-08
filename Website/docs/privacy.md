@@ -32,3 +32,6 @@ frame, gambar, video, atau landmark mentah.
 Pengguna dapat mengunduh laporan JSON secara eksplisit. File dibuat langsung di
 browser dan tidak diunggah ke SignSense. Memulai sesi baru, mengganti mode, refresh,
 atau menutup tab menghapus log yang belum diunduh.
+
+Halaman analisis membaca beberapa laporan JSON langsung di browser. Laporan tidak
+diunggah, dan hasil agregat hanya berada di React state selama halaman terbuka.

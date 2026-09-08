@@ -4,6 +4,7 @@ const navItems = [
   { to: "/", label: "Beranda", end: true },
   { to: "/belajar", label: "Belajar", end: false },
   { to: "/panduan", label: "Panduan", end: false },
+  { to: "/validasi", label: "Validasi", end: false },
   { to: "/tentang", label: "Tentang", end: false },
 ] as const;
 

@@ -7,6 +7,7 @@ import { GuidePage } from "./pages/GuidePage";
 import { LandingPage } from "./pages/LandingPage";
 import { LetterDetailPage } from "./pages/LetterDetailPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { ValidationAnalysisPage } from "./pages/ValidationAnalysisPage";
 
 const RecognizerPage = lazy(() => import("./pages/RecognizerPage"));
 
@@ -29,6 +30,7 @@ export function AppRoutes() {
           <Route path="belajar/:mode/:letter" element={<LetterDetailPage />} />
           <Route path="panduan" element={<GuidePage />} />
           <Route path="tentang" element={<AboutPage />} />
+          <Route path="validasi" element={<ValidationAnalysisPage />} />
           <Route
             path="kamera/:mode"
             element={

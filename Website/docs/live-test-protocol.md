@@ -47,6 +47,8 @@ Pengujian ini mengukur integrasi kamera, MediaPipe, feature parity, MLP, dan UI 
 3. Pastikan angka `Terekam` bertambah satu kali untuk setiap target selesai atau dilewati.
 4. Tekan `Unduh hasil JSON` sebelum mengganti pengguna.
 5. Tekan `Sesi baru` untuk membuat ID pseudonim baru bagi pengguna berikutnya.
+6. Setelah beberapa signer selesai, gabungkan file melalui `/#/validasi` mengikuti
+   `docs/validation-analysis.md`.
 
 File ekspor memuat mode, target, prediksi stabil terakhir, confidence, jumlah tangan,
 FPS, inference latency, durasi attempt, outcome, dan timestamp. File tidak memuat
