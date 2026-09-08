@@ -20,6 +20,7 @@ export interface InferenceSnapshot {
   raw: GesturePrediction;
   stableLabel: string;
   stableConfidence: number;
+  processedAt: number;
   detectedHands: number;
   fps: number;
   inferenceMs: number;
@@ -36,6 +37,7 @@ const EMPTY_SNAPSHOT: InferenceSnapshot = {
   raw: EMPTY_PREDICTION,
   stableLabel: "UNKNOWN",
   stableConfidence: 0,
+  processedAt: 0,
   detectedHands: 0,
   fps: 0,
   inferenceMs: 0,
@@ -272,6 +274,7 @@ export function useSignInference(
               raw: prediction,
               stableLabel: stable.label,
               stableConfidence: stable.confidence,
+              processedAt: startedAt,
               detectedHands: result.landmarks.length,
               fps: currentFps,
               inferenceMs,

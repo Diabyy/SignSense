@@ -4,6 +4,10 @@ import { CameraStage } from "../components/CameraStage";
 import { getLetter, isSignMode, referenceAssetUrl } from "../data/alphabet";
 import { useSignInference } from "../hooks/useSignInference";
 import { MODE_CONFIGS, type SignMode } from "../lib/modes";
+import {
+  progressFromPracticeSamples,
+  type PracticeSample,
+} from "../lib/practice";
 
 export default function RecognizerPage() {
   const { mode: requestedMode } = useParams();
@@ -25,6 +29,7 @@ function Recognizer({ mode }: { mode: SignMode }) {
   const [holdProgress, setHoldProgress] = useState(0);
   const [completedCount, setCompletedCount] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
+  const previousPracticeSampleRef = useRef<PracticeSample | null>(null);
 
   const { status, error, snapshot, startCamera, stopCamera } = useSignInference(
     videoRef,
@@ -36,8 +41,12 @@ function Recognizer({ mode }: { mode: SignMode }) {
 
   useEffect(() => {
     setTranscript([]);
+    setPracticeActive(false);
+    setTargetIndex(0);
     setHoldProgress(0);
+    setCompletedCount(0);
     setShowSuccess(false);
+    previousPracticeSampleRef.current = null;
   }, [mode]);
 
   const targetLetter = config.staticLetters[targetIndex % config.staticLetters.length] ?? "A";
@@ -45,37 +54,49 @@ function Recognizer({ mode }: { mode: SignMode }) {
 
   useEffect(() => {
     if (!practiceActive || status !== "running" || showSuccess) {
+      previousPracticeSampleRef.current = null;
       if (!showSuccess) setHoldProgress(0);
       return;
     }
 
-    if (snapshot.stableLabel === targetLetter && snapshot.stableConfidence >= 0.7) {
-      setHoldProgress((prev) => {
-        const next = prev + 10;
-        if (next >= 100) {
-          setShowSuccess(true);
-          setCompletedCount((c) => c + 1);
-          setTimeout(() => {
-            setShowSuccess(false);
-            setTargetIndex((idx) => (idx + 1) % config.staticLetters.length);
-            setHoldProgress(0);
-          }, 800);
-          return 100;
-        }
-        return next;
-      });
-    } else if (snapshot.stableLabel !== targetLetter) {
-      setHoldProgress((prev) => Math.max(0, prev - 25));
-    }
+    if (snapshot.processedAt <= 0) return;
+    const currentSample: PracticeSample = {
+      processedAt: snapshot.processedAt,
+      isMatching:
+        snapshot.stableLabel === targetLetter && snapshot.stableConfidence >= 0.7,
+    };
+    const previousSample = previousPracticeSampleRef.current;
+    previousPracticeSampleRef.current = currentSample;
+    setHoldProgress((previousProgress) =>
+      progressFromPracticeSamples(previousProgress, previousSample, currentSample),
+    );
   }, [
     practiceActive,
     status,
     snapshot.stableLabel,
     snapshot.stableConfidence,
+    snapshot.processedAt,
     targetLetter,
     config.staticLetters.length,
     showSuccess,
   ]);
+
+  useEffect(() => {
+    if (holdProgress < 100 || showSuccess) return;
+    setShowSuccess(true);
+    setCompletedCount((count) => count + 1);
+  }, [holdProgress, showSuccess]);
+
+  useEffect(() => {
+    if (!showSuccess) return;
+    const timer = window.setTimeout(() => {
+      setShowSuccess(false);
+      setTargetIndex((index) => (index + 1) % config.staticLetters.length);
+      setHoldProgress(0);
+      previousPracticeSampleRef.current = null;
+    }, 800);
+    return () => window.clearTimeout(timer);
+  }, [config.staticLetters.length, showSuccess]);
 
   const handleCopyTranscript = () => {
     if (transcript.length === 0) return;
@@ -86,6 +107,7 @@ function Recognizer({ mode }: { mode: SignMode }) {
 
   const handleRandomTarget = () => {
     const nextIdx = Math.floor(Math.random() * config.staticLetters.length);
+    previousPracticeSampleRef.current = null;
     setTargetIndex(nextIdx);
     setHoldProgress(0);
   };
@@ -209,6 +231,7 @@ function Recognizer({ mode }: { mode: SignMode }) {
                   <i /> Mode Tantangan Huruf
                 </span>
                 <button
+                  aria-pressed={practiceActive}
                   className={`chip-button ${practiceActive ? "is-active" : ""}`}
                   onClick={() => setPracticeActive((prev) => !prev)}
                   type="button"
@@ -235,12 +258,19 @@ function Recognizer({ mode }: { mode: SignMode }) {
                         </span>
                         <span className="practice-score">Tercapai: {completedCount}</span>
                       </div>
-                      <span className="practice-target-hint">
+                      <span className="practice-target-hint" aria-live="polite">
                         {showSuccess
                           ? "Hebat! Pose stabil tercapai ✓"
                           : `Peragakan pose huruf ${targetLetter} dan tahan posisi`}
                       </span>
-                      <div className="practice-progress-bar">
+                      <div
+                        aria-label={`Progres pose ${targetLetter}`}
+                        aria-valuemax={100}
+                        aria-valuemin={0}
+                        aria-valuenow={Math.round(holdProgress)}
+                        className="practice-progress-bar"
+                        role="progressbar"
+                      >
                         <div
                           className={`practice-progress-fill ${showSuccess ? "success" : ""}`}
                           style={{ width: `${holdProgress}%` }}
@@ -251,6 +281,7 @@ function Recognizer({ mode }: { mode: SignMode }) {
                   <div className="practice-actions">
                     <button
                       className="transcript-action-btn"
+                      disabled={showSuccess}
                       onClick={handleRandomTarget}
                       type="button"
                     >
@@ -258,7 +289,9 @@ function Recognizer({ mode }: { mode: SignMode }) {
                     </button>
                     <button
                       className="transcript-action-btn"
+                      disabled={showSuccess}
                       onClick={() => {
+                        previousPracticeSampleRef.current = null;
                         setTargetIndex((idx) => (idx + 1) % config.staticLetters.length);
                         setHoldProgress(0);
                       }}
