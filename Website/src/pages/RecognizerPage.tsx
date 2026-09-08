@@ -2,12 +2,39 @@ import { useEffect, useRef, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { CameraStage } from "../components/CameraStage";
 import { getLetter, isSignMode, referenceAssetUrl } from "../data/alphabet";
-import { useSignInference } from "../hooks/useSignInference";
+import {
+  useSignInference,
+  type InferenceSnapshot,
+} from "../hooks/useSignInference";
 import { MODE_CONFIGS, type SignMode } from "../lib/modes";
 import {
+  isPracticeSnapshotAfterReset,
   progressFromPracticeSamples,
   type PracticeSample,
 } from "../lib/practice";
+import {
+  createValidationSession,
+  recordValidationAttempt,
+  serializeValidationSession,
+  validationAttemptDuration,
+  validationSessionFilename,
+  type ValidationOutcome,
+} from "../lib/validation-session";
+
+function newValidationSession(mode: SignMode) {
+  return createValidationSession({
+    id: crypto.randomUUID(),
+    mode,
+    startedAt: new Date().toISOString(),
+  });
+}
+
+interface ActiveValidationAttempt {
+  targetLetter: string;
+  accumulatedDurationMs: number;
+  activeSince: number | null;
+  latestSnapshot: InferenceSnapshot;
+}
 
 export default function RecognizerPage() {
   const { mode: requestedMode } = useParams();
@@ -29,7 +56,17 @@ function Recognizer({ mode }: { mode: SignMode }) {
   const [holdProgress, setHoldProgress] = useState(0);
   const [completedCount, setCompletedCount] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
-  const previousPracticeSampleRef = useRef<PracticeSample | null>(null);
+  const [attemptReady, setAttemptReady] = useState(false);
+  const [validationSession, setValidationSession] = useState(() =>
+    newValidationSession(mode),
+  );
+  const previousPracticeFrameRef = useRef<{
+    sample: PracticeSample;
+    snapshot: InferenceSnapshot;
+  } | null>(null);
+  const activeAttemptRef = useRef<ActiveValidationAttempt | null>(null);
+  const completionSnapshotRef = useRef<InferenceSnapshot | null>(null);
+  const waitForProcessedAfterRef = useRef(0);
 
   const { status, error, snapshot, startCamera, stopCamera } = useSignInference(
     videoRef,
@@ -38,7 +75,6 @@ function Recognizer({ mode }: { mode: SignMode }) {
     (label) => setTranscript((current) => [...current.slice(-15), label]),
     showSkeleton,
   );
-
   useEffect(() => {
     setTranscript([]);
     setPracticeActive(false);
@@ -46,29 +82,80 @@ function Recognizer({ mode }: { mode: SignMode }) {
     setHoldProgress(0);
     setCompletedCount(0);
     setShowSuccess(false);
-    previousPracticeSampleRef.current = null;
+    setAttemptReady(false);
+    setValidationSession(newValidationSession(mode));
+    previousPracticeFrameRef.current = null;
+    activeAttemptRef.current = null;
+    completionSnapshotRef.current = null;
+    waitForProcessedAfterRef.current = performance.now();
   }, [mode]);
 
   const targetLetter = config.staticLetters[targetIndex % config.staticLetters.length] ?? "A";
   const targetEntry = getLetter(mode, targetLetter);
 
   useEffect(() => {
-    if (!practiceActive || status !== "running" || showSuccess) {
-      previousPracticeSampleRef.current = null;
+    if (!practiceActive || showSuccess) {
+      previousPracticeFrameRef.current = null;
+      activeAttemptRef.current = null;
+      completionSnapshotRef.current = null;
+      setAttemptReady(false);
       if (!showSuccess) setHoldProgress(0);
       return;
     }
 
-    if (snapshot.processedAt <= 0) return;
+    if (status !== "running") {
+      const activeAttempt = activeAttemptRef.current;
+      if (activeAttempt && activeAttempt.activeSince !== null) {
+        activeAttempt.accumulatedDurationMs = validationAttemptDuration(
+          activeAttempt.accumulatedDurationMs,
+          activeAttempt.activeSince,
+          activeAttempt.latestSnapshot.processedAt,
+        );
+        activeAttempt.activeSince = null;
+      }
+      previousPracticeFrameRef.current = null;
+      completionSnapshotRef.current = null;
+      setHoldProgress(0);
+      return;
+    }
+
+    if (
+      snapshot.processedAt <= 0 ||
+      !isPracticeSnapshotAfterReset(
+        snapshot.processedAt,
+        waitForProcessedAfterRef.current,
+      )
+    ) return;
     const currentSample: PracticeSample = {
       processedAt: snapshot.processedAt,
       isMatching:
         snapshot.stableLabel === targetLetter && snapshot.stableConfidence >= 0.7,
     };
-    const previousSample = previousPracticeSampleRef.current;
-    previousPracticeSampleRef.current = currentSample;
+    const previousFrame = previousPracticeFrameRef.current;
+    if (!activeAttemptRef.current || activeAttemptRef.current.targetLetter !== targetLetter) {
+      activeAttemptRef.current = {
+        targetLetter,
+        accumulatedDurationMs: 0,
+        activeSince: snapshot.processedAt,
+        latestSnapshot: snapshot,
+      };
+      setAttemptReady(true);
+    } else {
+      if (activeAttemptRef.current.activeSince === null) {
+        activeAttemptRef.current.activeSince = snapshot.processedAt;
+      }
+      activeAttemptRef.current.latestSnapshot = snapshot;
+    }
+    completionSnapshotRef.current = previousFrame?.sample.isMatching
+      ? previousFrame.snapshot
+      : null;
+    previousPracticeFrameRef.current = { sample: currentSample, snapshot };
     setHoldProgress((previousProgress) =>
-      progressFromPracticeSamples(previousProgress, previousSample, currentSample),
+      progressFromPracticeSamples(
+        previousProgress,
+        previousFrame?.sample ?? null,
+        currentSample,
+      ),
     );
   }, [
     practiceActive,
@@ -83,9 +170,31 @@ function Recognizer({ mode }: { mode: SignMode }) {
 
   useEffect(() => {
     if (holdProgress < 100 || showSuccess) return;
+    const activeAttempt = activeAttemptRef.current;
+    const completedSnapshot = completionSnapshotRef.current;
+    if (!activeAttempt || !completedSnapshot) return;
+    setValidationSession((session) =>
+      recordValidationAttempt(session, {
+        targetLetter,
+        predictedLabel: completedSnapshot.stableLabel,
+        confidence: completedSnapshot.stableConfidence,
+        detectedHands: completedSnapshot.detectedHands,
+        fps: completedSnapshot.fps,
+        inferenceMs: completedSnapshot.inferenceMs,
+        durationMs: validationAttemptDuration(
+          activeAttempt.accumulatedDurationMs,
+          activeAttempt.activeSince,
+          completedSnapshot.processedAt,
+        ),
+        outcome: "completed",
+        recordedAt: new Date().toISOString(),
+      }),
+    );
+    activeAttemptRef.current = null;
+    setAttemptReady(false);
     setShowSuccess(true);
     setCompletedCount((count) => count + 1);
-  }, [holdProgress, showSuccess]);
+  }, [holdProgress, showSuccess, targetLetter]);
 
   useEffect(() => {
     if (!showSuccess) return;
@@ -93,7 +202,10 @@ function Recognizer({ mode }: { mode: SignMode }) {
       setShowSuccess(false);
       setTargetIndex((index) => (index + 1) % config.staticLetters.length);
       setHoldProgress(0);
-      previousPracticeSampleRef.current = null;
+      previousPracticeFrameRef.current = null;
+      activeAttemptRef.current = null;
+      completionSnapshotRef.current = null;
+      waitForProcessedAfterRef.current = performance.now();
     }, 800);
     return () => window.clearTimeout(timer);
   }, [config.staticLetters.length, showSuccess]);
@@ -105,11 +217,84 @@ function Recognizer({ mode }: { mode: SignMode }) {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleRandomTarget = () => {
-    const nextIdx = Math.floor(Math.random() * config.staticLetters.length);
-    previousPracticeSampleRef.current = null;
-    setTargetIndex(nextIdx);
+  const recordSkippedAttempt = (outcome: ValidationOutcome = "skipped") => {
+    const activeAttempt = activeAttemptRef.current;
+    if (!activeAttempt) return false;
+    activeAttemptRef.current = null;
+    setAttemptReady(false);
+    const latestSnapshot = activeAttempt.latestSnapshot;
+    setValidationSession((session) =>
+      recordValidationAttempt(session, {
+        targetLetter,
+        predictedLabel: latestSnapshot.stableLabel,
+        confidence: latestSnapshot.stableConfidence,
+        detectedHands: latestSnapshot.detectedHands,
+        fps: latestSnapshot.fps,
+        inferenceMs: latestSnapshot.inferenceMs,
+        durationMs: validationAttemptDuration(
+          activeAttempt.accumulatedDurationMs,
+          activeAttempt.activeSince,
+          latestSnapshot.processedAt,
+        ),
+        outcome,
+        recordedAt: new Date().toISOString(),
+      }),
+    );
+    return true;
+  };
+
+  const resetAttemptTiming = () => {
+    previousPracticeFrameRef.current = null;
+    activeAttemptRef.current = null;
+    completionSnapshotRef.current = null;
+    waitForProcessedAfterRef.current = performance.now();
+    setAttemptReady(false);
     setHoldProgress(0);
+  };
+
+  const handleTogglePractice = () => {
+    resetAttemptTiming();
+    setPracticeActive((active) => !active);
+  };
+
+  const handleRandomTarget = () => {
+    if (!recordSkippedAttempt()) return;
+    const nextIdx = Math.floor(Math.random() * config.staticLetters.length);
+    resetAttemptTiming();
+    setTargetIndex(nextIdx);
+  };
+
+  const handleSkipTarget = () => {
+    if (!recordSkippedAttempt()) return;
+    resetAttemptTiming();
+    setTargetIndex((index) => (index + 1) % config.staticLetters.length);
+  };
+
+  const handleDownloadValidation = () => {
+    const blob = new Blob([serializeValidationSession(validationSession)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = validationSessionFilename(validationSession);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1_000);
+  };
+
+  const handleNewValidationSession = () => {
+    if (
+      validationSession.attempts.length > 0 &&
+      !window.confirm("Mulai sesi baru? Unduh hasil lama terlebih dahulu jika masih dibutuhkan.")
+    ) {
+      return;
+    }
+    resetAttemptTiming();
+    setCompletedCount(0);
+    setShowSuccess(false);
+    setValidationSession(newValidationSession(mode));
   };
 
   const statusLabel =
@@ -233,7 +418,7 @@ function Recognizer({ mode }: { mode: SignMode }) {
                 <button
                   aria-pressed={practiceActive}
                   className={`chip-button ${practiceActive ? "is-active" : ""}`}
-                  onClick={() => setPracticeActive((prev) => !prev)}
+                  onClick={handleTogglePractice}
                   type="button"
                 >
                   {practiceActive ? "Aktif" : "Mulai"}
@@ -257,6 +442,9 @@ function Recognizer({ mode }: { mode: SignMode }) {
                           {targetEntry?.expectedHands ?? 1} tangan
                         </span>
                         <span className="practice-score">Tercapai: {completedCount}</span>
+                        <span className="practice-score">
+                          Terekam: {validationSession.attempts.length}
+                        </span>
                       </div>
                       <span className="practice-target-hint" aria-live="polite">
                         {showSuccess
@@ -281,7 +469,7 @@ function Recognizer({ mode }: { mode: SignMode }) {
                   <div className="practice-actions">
                     <button
                       className="transcript-action-btn"
-                      disabled={showSuccess}
+                      disabled={showSuccess || !attemptReady}
                       onClick={handleRandomTarget}
                       type="button"
                     >
@@ -289,15 +477,26 @@ function Recognizer({ mode }: { mode: SignMode }) {
                     </button>
                     <button
                       className="transcript-action-btn"
-                      disabled={showSuccess}
-                      onClick={() => {
-                        previousPracticeSampleRef.current = null;
-                        setTargetIndex((idx) => (idx + 1) % config.staticLetters.length);
-                        setHoldProgress(0);
-                      }}
+                      disabled={showSuccess || !attemptReady}
+                      onClick={handleSkipTarget}
                       type="button"
                     >
                       Lewati
+                    </button>
+                    <button
+                      className="transcript-action-btn"
+                      disabled={validationSession.attempts.length === 0}
+                      onClick={handleDownloadValidation}
+                      type="button"
+                    >
+                      Unduh hasil JSON
+                    </button>
+                    <button
+                      className="transcript-action-btn danger"
+                      onClick={handleNewValidationSession}
+                      type="button"
+                    >
+                      Sesi baru
                     </button>
                   </div>
                 </>

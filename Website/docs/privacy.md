@@ -24,4 +24,11 @@ Transcript hanya disimpan pada React state selama halaman terbuka. Refresh atau 
 
 ## Live Test Logs
 
-Jika test mode ditambahkan, log hanya boleh memuat target, prediksi, confidence, jumlah tangan, FPS, dan timestamp. Video atau gambar tidak boleh direkam secara default.
+Mode tantangan menyimpan log validasi hanya di React state selama halaman terbuka.
+Log pseudonim memuat ID sesi acak, mode, target, prediksi, confidence, jumlah tangan, FPS,
+inference latency, durasi, outcome, dan timestamp. Log tidak memuat nama, email,
+frame, gambar, video, atau landmark mentah.
+
+Pengguna dapat mengunduh laporan JSON secara eksplisit. File dibuat langsung di
+browser dan tidak diunggah ke SignSense. Memulai sesi baru, mengganti mode, refresh,
+atau menutup tab menghapus log yang belum diunduh.

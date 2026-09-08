@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   advancePracticeProgress,
+  isPracticeSnapshotAfterReset,
   progressFromPracticeSamples,
   PRACTICE_HOLD_DURATION_MS,
 } from "../src/lib/practice";
@@ -59,5 +60,11 @@ describe("practice progress", () => {
     const current = { processedAt: 500, isMatching: true };
 
     expect(progressFromPracticeSamples(0, null, current)).toBe(0);
+  });
+
+  it("rejects snapshots that started before or during a reset", () => {
+    expect(isPracticeSnapshotAfterReset(499, 500)).toBe(false);
+    expect(isPracticeSnapshotAfterReset(500, 500)).toBe(false);
+    expect(isPracticeSnapshotAfterReset(501, 500)).toBe(true);
   });
 });

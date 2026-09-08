@@ -40,6 +40,19 @@ Pengujian ini mengukur integrasi kamera, MediaPipe, feature parity, MLP, dan UI 
 - Time until stable prediction
 - Notes: detector miss, partial hand, or wrong class
 
+## Ekspor dari Aplikasi
+
+1. Aktifkan kamera lalu mulai `Mode Tantangan Huruf`.
+2. Gunakan `Lewati` jika target tidak berhasil diselesaikan; attempt tersebut tetap dicatat.
+3. Pastikan angka `Terekam` bertambah satu kali untuk setiap target selesai atau dilewati.
+4. Tekan `Unduh hasil JSON` sebelum mengganti pengguna.
+5. Tekan `Sesi baru` untuk membuat ID pseudonim baru bagi pengguna berikutnya.
+
+File ekspor memuat mode, target, prediksi stabil terakhir, confidence, jumlah tangan,
+FPS, inference latency, durasi attempt, outcome, dan timestamp. File tidak memuat
+nama, email, frame, gambar, video, atau landmark mentah. Simpan catatan kondisi uji
+di lembar terpisah dengan ID sesi yang sama bila diperlukan.
+
 ## Runtime Gates
 
 - FPS minimal 20 pada Desktop Chrome.

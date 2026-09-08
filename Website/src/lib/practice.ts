@@ -7,6 +7,13 @@ export interface PracticeSample {
   isMatching: boolean;
 }
 
+export function isPracticeSnapshotAfterReset(
+  snapshotProcessedAt: number,
+  resetAt: number,
+): boolean {
+  return snapshotProcessedAt > resetAt;
+}
+
 function clampProgress(progress: number): number {
   if (!Number.isFinite(progress)) return 0;
   return Math.min(100, Math.max(0, progress));
